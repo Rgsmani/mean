@@ -1,0 +1,67 @@
+
+  <div class="header_toolbar mat-elevation-z6">
+  <md-toolbar color="primary">
+ <div fxLayout="row" fxLayoutAlign="space-between center" class="header_layout"> 
+ <span>CRM</span>
+
+  <button md-icon-button [mdMenuTriggerFor]="headermenu">
+      <md-icon>more_vert</md-icon>
+    </button>
+     
+ </div>
+   
+
+  
+  </md-toolbar>
+  </div>
+
+ <md-menu x-position="before" #headermenu="mdMenu">
+    <button md-menu-item>My Profile</button>
+    <button md-menu-item (click)="logout()">Logout</button>
+  </md-menu>
+
+
+
+<md-sidenav-container class="example-container sidemenu_container">
+
+ 
+   <md-sidenav #sidenav class="example-sidenav" mode="side" opened="true" >
+     <perfect-scrollbar class="container" [config]="config">
+     <md-list>
+ <md-list-item><a [routerLink]="['./dashboard']" md-menu-item>Dashboard</a></md-list-item>
+ <md-list-item>
+   <a  [routerLink]="['./user']" md-menu-item >Users</a>
+  
+ 
+ </md-list-item>
+  
+  <md-list-item>
+    <a [mdMenuTriggerFor]="menu" md-menu-item>Master</a>
+<md-menu #menu="mdMenu" xPosition="before" [overlapTrigger]="false">
+  <a [routerLink]="['./designation']"  md-menu-item>Designation</a>  
+  <a [routerLink]="['./role']" md-menu-item>Role</a>
+  <a [routerLink]="['./department']" md-menu-item>Department</a>  
+</md-menu>    
+  </md-list-item>
+
+</md-list>
+</perfect-scrollbar>
+  </md-sidenav>
+ 
+
+<perfect-scrollbar class="container" style="height:calc(100vh)" [config]="config">
+  
+<div class="main-content"> 
+
+  <router-outlet></router-outlet>
+   
+</div>
+
+</perfect-scrollbar>
+</md-sidenav-container>
+
+
+
+
+
+

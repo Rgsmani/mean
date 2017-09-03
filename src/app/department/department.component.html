@@ -1,0 +1,131 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+<h2>Department</h2>
+
+</div>
+
+
+
+<md-card class="example-card">
+
+
+  <div class="for_add" *ngIf="!showEdit" >
+      <md-card-header>
+   
+    <md-card-title>Add Department</md-card-title>
+    
+  </md-card-header>
+    <form #departmentAddForm="ngForm" (ngSubmit)="AddDepartment(departmentAddForm.value)">
+<div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
+  
+
+  <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+    <div>
+      <md-input-container fxFlex>
+  <input mdInput #departmentref="ngModel" required placeholder="Department" name="department" [(ngModel)]="department" value="">
+
+</md-input-container>
+
+    </div>
+    <div class="error-msg-block" *ngIf="departmentref.errors && (departmentref.dirty || departmentref.touched)">
+    <div [hidden]="!departmentref.errors.required" class="error-msg">
+      Please enter the department
+  </div>
+</div>
+  </div>
+
+
+
+    <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+     <button type="submit" color="primary" md-raised-button>Add</button>
+     
+  </div>
+  </div>
+  </form>
+  </div>
+
+
+  <div class="for_update" *ngIf="showEdit">
+      <md-card-header>
+   
+    <md-card-title>Edit Department<button type="button" color="" (click)="showAdd()" md-raised-button>Add New</button></md-card-title>
+    
+  </md-card-header>
+ <form #departmentEditForm="ngForm" (ngSubmit)="updateDepartment()">
+<div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
+  
+
+  <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+    <div>
+      <md-input-container fxFlex>
+  <input mdInput #departmentref="ngModel" required placeholder="Department" name="department" [(ngModel)]="selected_details.department" value="">
+
+</md-input-container>
+
+    </div>
+    <div class="error-msg-block" *ngIf="departmentref.errors && (departmentref.dirty || departmentref.touched)">
+    <div [hidden]="!departmentref.errors.required" class="error-msg">
+      Please enter the department
+  </div>
+</div>
+  </div>
+
+
+
+    <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+     <button type="submit" color="primary" md-raised-button>Update</button>
+     
+  </div>
+  </div>
+  </form>
+  </div>
+
+
+
+  <md-card-content>
+
+  </md-card-content>
+
+</md-card>
+
+<md-card class="example-card">
+
+
+  <md-card-content>
+
+
+
+  <ngx-datatable
+        [rows]="departments"      
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [rowHeight]="'auto'"
+        [footerHeight]="0" 
+        [limit]="5"     
+         class="fullscreen">
+         <ngx-datatable-column name="S.No" width="80">
+          <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+            <strong>{{rowIndex+1}}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+         <ngx-datatable-column name="Department"></ngx-datatable-column>        
+
+          <ngx-datatable-column  [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+              <ng-template ngx-datatable-header-template let-value="value" >
+               <span>Actions</span>
+              </ng-template>
+
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    <button md-raised-button (click)="updateDetails(row)">Edit</button>
+                   
+         <button md-raised-button (click)="deleteDepartment(row)">Delete</button>
+                 
+              </ng-template>
+          </ngx-datatable-column>
+
+          
+         
+      </ngx-datatable>
+      
+  </md-card-content>
+
+</md-card>

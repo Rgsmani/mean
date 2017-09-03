@@ -1,0 +1,130 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+<h2>Designation</h2>
+
+</div>
+
+
+
+<md-card class="example-card">
+
+
+  <div class="for_add" *ngIf="!showEdit" >
+      <md-card-header>
+   
+    <md-card-title>Add Designation</md-card-title>
+    
+  </md-card-header>
+    <form #designationAddForm="ngForm" (ngSubmit)="AddVideo(designationAddForm.value)">
+<div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
+  
+
+  <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+    <div>
+      <md-input-container fxFlex>
+  <input mdInput #designationref="ngModel" required placeholder="Designation" name="designation" [(ngModel)]="designation" value="">
+
+</md-input-container>
+
+    </div>
+    <div class="error-msg-block" *ngIf="designationref.errors && (designationref.dirty || designationref.touched)">
+    <div [hidden]="!designationref.errors.required" class="error-msg">
+      Please enter the designation
+  </div>
+</div>
+  </div>
+
+
+
+    <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+     <button type="submit" color="primary" md-raised-button>Add</button>
+     
+  </div>
+  </div>
+  </form>
+  </div>
+
+
+  <div class="for_update" *ngIf="showEdit">
+      <md-card-header>
+   
+    <md-card-title>Edit Designation<button type="button" color="" (click)="showAdd()" md-raised-button>Add New</button></md-card-title>
+    
+  </md-card-header>
+ <form #designationForm="ngForm" (ngSubmit)="UpdateDes()">
+<div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
+  
+
+  <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+    <div>
+      <md-input-container fxFlex>
+  <input mdInput #designationref="ngModel" required placeholder="Designation" name="designation" [(ngModel)]="selected_details.designation" value="">
+
+</md-input-container>
+
+    </div>
+    <div class="error-msg-block" *ngIf="designationref.errors && (designationref.dirty || designationref.touched)">
+    <div [hidden]="!designationref.errors.required" class="error-msg">
+      Please enter the designation
+  </div>
+</div>
+  </div>
+
+
+
+    <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
+     <button type="submit" color="primary" md-raised-button>Update</button>
+     
+  </div>
+  </div>
+  </form>
+  </div>
+
+
+
+  <md-card-content>
+
+  </md-card-content>
+
+</md-card>
+
+<md-card class="example-card">
+
+
+  <md-card-content>
+
+
+
+  <ngx-datatable
+        [rows]="designations"      
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [rowHeight]="'auto'"
+        [footerHeight]="0" 
+        [limit]="5"     
+         class="fullscreen">
+         <ngx-datatable-column name="S.No" width="80">
+          <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+            <strong>{{rowIndex+1}}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+         <ngx-datatable-column name="Designation"></ngx-datatable-column>        
+
+          <ngx-datatable-column  [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+              <ng-template ngx-datatable-header-template let-value="value" >
+               <span>Actions</span>
+              </ng-template>
+
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    <button md-raised-button (click)="updateDetails(row)">Edit</button>
+                    {{value.designation | json}}
+         <button md-raised-button (click)="deleteDes(row)">Delete</button>
+                 
+              </ng-template>
+          </ngx-datatable-column>
+
+          
+         
+      </ngx-datatable>
+  </md-card-content>
+
+</md-card>

@@ -1,1 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@swimlane/ngx-datatable/release/index.css';
+@import '~@swimlane/ngx-datatable/release/themes/material.css';
+@import '~@swimlane/ngx-datatable/release/assets/icons.css';
+
+html, body, material-app, md-sidenav-container, .my-content {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  font-family: Roboto, sans-serif;
+}
+
+
+
+
+.done {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  color: white;
+}
+md-sidenav {
+  width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
+}
+.main-content{
+  margin-top: 64px;
+  padding: 15px;
+}
+.header_toolbar{
+  position: fixed;
+   width: 100%; 
+   top:0;
+   z-index:1;
+   
+}
+.header_layout{
+  width: 100%;
+}
+.example-sidenav{
+  margin-top: 64px;
+}
+.example-sidenav a{
+  box-sizing: border-box;
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 47px;
+    text-decoration: none;
+    transition: all .3s;
+    /*padding: 0 16px;*/
+    width: 100%;
+    position: relative;
+}
+.input-control{
+  padding: 10px;
+  position: relative;
+}
+.example-card{
+  margin-bottom: 30px;
+}
+.error-msg-block{
+      position: absolute;
+    font-size: 12px;
+    color: red;
+    bottom: 14px;
+}
+.sidemenu_container .mat-list-item-content{
+  padding: 0 !important;
+}
+.mini-button{
+    padding: 3px 8px !important;
+    font-size: 12px !important;
+    line-height: 1.5 !important;
+    /* border-radius: 3px !important; */
+    min-width: 1% !important;    
+}

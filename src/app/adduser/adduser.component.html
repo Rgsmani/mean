@@ -1,0 +1,550 @@
+<div class="for_add" *ngIf="showAdd">
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+  <h2>Add User</h2><button type="button" color="" (click)="showManageUserPage()" md-raised-button>Manage Users</button>
+
+</div>
+
+<form #userAddForm="ngForm" (ngSubmit)="AddUser(userAddForm.value)">
+  <md-card class="example-card">
+    <md-card-header>
+
+      <md-card-title>Login Information</md-card-title>
+
+    </md-card-header>
+    <md-card-content>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <div>
+            <md-input-container fxFlex>
+              <input mdInput #usernameref="ngModel" name="username"  required placeholder="UserName" [(ngModel)]="adding_values.username"
+                value="">
+            </md-input-container>
+          </div>
+          <div class="error-msg-block" *ngIf="usernameref.errors && (usernameref.dirty || usernameref.touched)">
+            <div [hidden]="!usernameref.errors.required" class="error-msg">
+              Please enter the username
+            </div>
+          
+          </div>
+
+        </div>
+
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Password" value="" required [(ngModel)]="adding_values.password" name="password" #passwordref="ngModel">
+          </md-input-container>
+          <div class="error-msg-block" *ngIf="passwordref.errors && (passwordref.dirty || passwordref.touched)">
+            <div [hidden]="!passwordref.errors.required" class="error-msg">
+              Please enter the password
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </md-card-content>
+  </md-card>
+
+
+  <md-card class="example-card">
+
+
+    <md-card-content>
+
+
+
+      <md-card-header>
+
+        <md-card-title>User Information</md-card-title>
+
+      </md-card-header>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <div>
+            <md-input-container fxFlex>
+              <input mdInput placeholder="Employee ID" required value="" [(ngModel)]="adding_values.empid" name="empid" #empidref="ngModel">
+            </md-input-container>
+          </div>
+
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="First Name" required value="" [(ngModel)]="adding_values.firstname" name="firstname" #firstnameref="ngModel">
+          </md-input-container>
+        </div>
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Last Name" required value="" [(ngModel)]="adding_values.lastname" name="lastname" #lastnameref="ngModel">
+          </md-input-container>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+
+          <md-radio-group [(ngModel)]="adding_values.gender" required name="gender" #genderref="ngModel">
+            <md-radio-button value="1">Male</md-radio-button>
+            <md-radio-button value="2">Female</md-radio-button>
+          </md-radio-group>
+
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+
+          <md-select placeholder="Designation" fxFlex [(ngModel)]="adding_values.designation" name="designation" #designationref="ngModel">
+            <md-option *ngFor="let value of designations" [value]="value.designation">
+              {{ value.designation }}
+            </md-option>
+          </md-select>
+        </div>
+
+         <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+
+          <md-select placeholder="Department" required fxFlex [(ngModel)]="adding_values.department" name="department" #departmentref="ngModel">
+            <md-option *ngFor="let dep of departments" [value]="dep.department">
+              {{ dep.department }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-select placeholder="Role"  required fxFlex [(ngModel)]="adding_values.role" name="role" #roleref="ngModel">
+            <md-option *ngFor="let role of roles" [value]="role.role">
+              {{ role.role }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-select placeholder="Shift" fxFlex [(ngModel)]="adding_values.shift" name="shift" #shiftref="ngModel">
+            <md-option *ngFor="let shift of shifts" [value]="shift">
+              {{ shift }}
+            </md-option>
+          </md-select>
+        </div>
+
+      
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Official Mail ID" value="" [(ngModel)]="adding_values.officemailid" name="officemailid" #officemailidref="ngModel">
+          </md-input-container>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Personal Mail ID" required value="" [(ngModel)]="adding_values.personalmailid" name="personalmailid" #personalmailidref="ngModel">
+          </md-input-container>
+        </div>
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Mobile Number" required value="" [(ngModel)]="adding_values.mobileno" name="mobileno" #mobilenoref="ngModel">
+          </md-input-container>
+        </div>
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Phone Extension Number" value="" [(ngModel)]="adding_values.phoneextensionno" name="phoneextensionno" #mobilenoref="ngModel">
+          </md-input-container>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput [mdDatepicker]="picker" required placeholder="Date of Joining" [(ngModel)]="adding_values.doj" name="doj" #dojref="ngModel">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+          </md-input-container>
+          <md-datepicker #picker></md-datepicker>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput [mdDatepicker]="picker2" placeholder="Go Live Date" [(ngModel)]="adding_values.golivedate" name="golivedate" #golivedateref="ngModel">
+            <button mdSuffix [mdDatepickerToggle]="picker2"></button>
+          </md-input-container>
+          <md-datepicker #picker2></md-datepicker>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput [mdDatepicker]="picker1" required placeholder="Date of Birth" [(ngModel)]="adding_values.dob" name="dob" #dobref="ngModel">
+            <button mdSuffix [mdDatepickerToggle]="picker1"></button>
+          </md-input-container>
+          <md-datepicker #picker1></md-datepicker>
+        </div>
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-select placeholder="Blood Group"  fxFlex [(ngModel)]="adding_values.bloodgroup" name="bloodgroup" #bloodgroupref="ngModel">
+            <md-option *ngFor="let blood of bloodgroups" [value]="blood">
+              {{ blood }}
+            </md-option>
+          </md-select>
+        </div>
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Emerency Contact Number" required value="" [(ngModel)]="adding_values.emergency_contactno" name="emergency_contactno"
+              #emergencycontactnoref="ngModel">
+          </md-input-container>
+        </div>
+
+ 
+
+      </div>
+
+ <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+ <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+               <button color="primary" class="mini-button"  md-raised-button (click)="addTeamLead()">                 
+                 <span *ngIf="showTeamLead == false">Add Team Lead</span>
+                 <span *ngIf="showTeamLead == true">Remove Team Lead</span></button>
+                    <button color="primary" class="mini-button"  md-raised-button (click)="addManager()">                 
+                 <span *ngIf="showManager == false">Add Manager</span>
+                 <span *ngIf="showManager == true">Remove Manager</span></button>              
+          </div>
+ </div>
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+
+          <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%" *ngIf="showTeamLead">
+          <md-select placeholder="Team Lead" fxFlex [(ngModel)]="adding_values.teamlead" name="teamlead" #teamleadref="ngModel">
+            <md-option *ngFor="let role of roles" [value]="role.value">
+              {{ role.value }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%" *ngIf="showManager">
+          <md-select placeholder="Manager" fxFlex [(ngModel)]="adding_values.manager" name="manager" #managerref="ngModel">
+            <md-option *ngFor="let role of roles" [value]="role.value">
+              {{ role.value }}
+            </md-option>
+          </md-select>
+        </div>
+      </div>
+
+
+    </md-card-content>
+
+    <button color="primary" [disabled]="!userAddForm.form.valid" md-raised-button>Add User</button>
+      <button color=""  md-raised-button (click)="resetUser()">Reset</button>
+
+  </md-card>
+</form> 
+
+</div>
+
+
+
+
+
+<div class="for_edit" *ngIf="showEdit">
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+  <h2>Edit User</h2><button type="button" color="" (click)="showManageUserPage()" md-raised-button>Back</button>
+
+</div>
+
+
+
+<form #userEditForm="ngForm" (ngSubmit)="updateUser(userEditForm.value)">
+  <md-card class="example-card">
+    <md-card-header>
+
+      <md-card-title>Login Information</md-card-title>
+
+    </md-card-header>
+    <md-card-content>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <div>
+            <md-input-container fxFlex>
+              <input mdInput #usernameref="ngModel" name="username"  required placeholder="UserName" [(ngModel)]="selected_details.username"
+                value="">
+            </md-input-container>
+          </div>
+          <div class="error-msg-block" *ngIf="usernameref.errors && (usernameref.dirty || usernameref.touched)">
+            <div [hidden]="!usernameref.errors.required" class="error-msg">
+              Please enter the username
+            </div>
+          
+          </div>
+
+        </div>
+
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input type="password" mdInput placeholder="Password" value="" required [(ngModel)]="selected_details.password" name="password" #passwordref="ngModel">
+          </md-input-container>
+          <div class="error-msg-block" *ngIf="passwordref.errors && (passwordref.dirty || passwordref.touched)">
+            <div [hidden]="!passwordref.errors.required" class="error-msg">
+              Please enter the password
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+    </md-card-content>
+  </md-card>
+
+
+  <md-card class="example-card">
+
+
+    <md-card-content>
+
+
+
+      <md-card-header>
+
+        <md-card-title>User Information</md-card-title>
+
+      </md-card-header>
+      <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <div>
+            <md-input-container fxFlex>
+              <input mdInput placeholder="Employee ID" required value="" [(ngModel)]="selected_details.empid" name="empid" #empidref="ngModel">
+            </md-input-container>
+          </div>
+
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="First Name" required value="" [(ngModel)]="selected_details.firstname" name="firstname" #firstnameref="ngModel">
+          </md-input-container>
+        </div>
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Last Name" required value="" [(ngModel)]="selected_details.lastname" name="lastname" #lastnameref="ngModel">
+          </md-input-container>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+
+          <md-radio-group [(ngModel)]="selected_details.gender" required name="gender" #genderref="ngModel">
+            <md-radio-button value="1">Male</md-radio-button>
+            <md-radio-button value="2">Female</md-radio-button>
+          </md-radio-group>
+
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+
+          <md-select placeholder="Designation" fxFlex [(ngModel)]="selected_details.designation" name="designation" #designationref="ngModel">
+            <md-option *ngFor="let value of designations" [value]="value.designation">
+              {{ value.designation }}
+            </md-option>
+          </md-select>
+        </div>
+
+         <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+
+          <md-select placeholder="Department" required fxFlex [(ngModel)]="selected_details.department" name="department" #departmentref="ngModel">
+            <md-option *ngFor="let dep of departments" [value]="dep.department">
+              {{ dep.department }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-select placeholder="Role"  required fxFlex [(ngModel)]="selected_details.role" name="role" #roleref="ngModel">
+            <md-option *ngFor="let role of roles" [value]="role.role">
+              {{ role.role }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-select placeholder="Shift" fxFlex [(ngModel)]="selected_details.shift" name="shift" #shiftref="ngModel">
+            <md-option *ngFor="let shift of shifts" [value]="shift">
+              {{ shift }}
+            </md-option>
+          </md-select>
+        </div>
+
+      
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Official Mail ID" value="" [(ngModel)]="selected_details.officemailid" name="officemailid" #officemailidref="ngModel">
+          </md-input-container>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Personal Mail ID" required value="" [(ngModel)]="selected_details.personalmailid" name="personalmailid" #personalmailidref="ngModel">
+          </md-input-container>
+        </div>
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Mobile Number" required value="" [(ngModel)]="selected_details.mobileno" name="mobileno" #mobilenoref="ngModel">
+          </md-input-container>
+        </div>
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Phone Extension Number" value="" [(ngModel)]="selected_details.phoneextensionno" name="phoneextensionno" #mobilenoref="ngModel">
+          </md-input-container>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput [mdDatepicker]="picker" required placeholder="Date of Joining" [(ngModel)]="selected_details.doj" name="doj" #dojref="ngModel">
+            <button mdSuffix [mdDatepickerToggle]="picker"></button>
+          </md-input-container>
+          <md-datepicker #picker></md-datepicker>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput [mdDatepicker]="picker2" placeholder="Go Live Date" [(ngModel)]="selected_details.golivedate" name="golivedate" #golivedateref="ngModel">
+            <button mdSuffix [mdDatepickerToggle]="picker2"></button>
+          </md-input-container>
+          <md-datepicker #picker2></md-datepicker>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput [mdDatepicker]="picker1" required placeholder="Date of Birth" [(ngModel)]="selected_details.dob" name="dob" #dobref="ngModel">
+            <button mdSuffix [mdDatepickerToggle]="picker1"></button>
+          </md-input-container>
+          <md-datepicker #picker1></md-datepicker>
+        </div>
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-select placeholder="Blood Group"  fxFlex [(ngModel)]="selected_details.bloodgroup" name="bloodgroup" #bloodgroupref="ngModel">
+            <md-option *ngFor="let blood of bloodgroups" [value]="blood">
+              {{ blood }}
+            </md-option>
+          </md-select>
+        </div>
+
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+          <md-input-container fxFlex>
+            <input mdInput placeholder="Emerency Contact Number" required value="" [(ngModel)]="selected_details.emergency_contactno" name="emergency_contactno"
+              #emergencycontactnoref="ngModel">
+          </md-input-container>
+        </div>
+
+
+
+      </div>
+
+
+ <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+ <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
+               <button color="primary" class="mini-button"  md-raised-button (click)="addTeamLead()">                 
+                 <span *ngIf="showTeamLead == false">Add Team Lead</span>
+                 <span *ngIf="showTeamLead == true">Remove Team Lead</span></button>
+                    <button color="primary" class="mini-button"  md-raised-button (click)="addManager()">                 
+                 <span *ngIf="showManager == false">Add Manager</span>
+                 <span *ngIf="showManager == true">Remove Manager</span></button>              
+          </div>
+ </div>
+       <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>      
+
+
+          <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%" *ngIf="showTeamLead">
+          <md-select placeholder="Team Lead" fxFlex [(ngModel)]="selected_details.teamlead" name="teamlead" #teamleadref="ngModel">
+            <md-option *ngFor="let role of roles" [value]="role.value">
+              {{ role.value }}
+            </md-option>
+          </md-select>
+        </div>
+
+        <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%" *ngIf="showManager">
+          <md-select placeholder="Manager" fxFlex [(ngModel)]="selected_details.manager" name="manager" #managerref="ngModel">
+            <md-option *ngFor="let role of roles" [value]="role.value">
+              {{ role.value }}
+            </md-option>
+          </md-select>
+        </div>
+      </div>
+
+
+     
+
+
+    </md-card-content>
+
+    <button color="primary" [disabled]="!userEditForm.form.valid" md-raised-button>Update</button>
+     <button color=""  md-raised-button (click)="resetUser()">Reset</button>
+
+  </md-card>
+</form> 
+</div>
+
+
+
+
+
+
+
+<div class="for_list" *ngIf="showList">
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+  <h2>Manage Users</h2><button type="button" color="" (click)="showAddPage()" md-raised-button>Add User</button>
+
+</div>
+
+<md-card class="example-card">
+
+
+  <md-card-content>
+
+
+
+  <ngx-datatable
+        [rows]="users"      
+        [columnMode]="'force'"
+        [headerHeight]="50"
+        [rowHeight]="'auto'"
+        [footerHeight]="0" 
+        [limit]="5"     
+         class="fullscreen">
+         <ngx-datatable-column name="S.No" width="80">
+          <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+            <strong>{{rowIndex+1}}</strong>
+          </ng-template>
+        </ngx-datatable-column>
+         <ngx-datatable-column name="Emp ID">
+            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+            <strong>{{row.empid}}</strong>
+          </ng-template>
+           </ngx-datatable-column>  
+          <ngx-datatable-column name="User Name">
+            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+            <strong>{{row.username}}</strong>
+          </ng-template>
+           </ngx-datatable-column>       
+
+          <ngx-datatable-column  [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+              <ng-template ngx-datatable-header-template let-value="value" >
+               <span>Actions</span>
+              </ng-template>
+
+              <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    <button md-raised-button (click)="updateDetails(row)">Edit</button>
+                   
+         <button md-raised-button (click)="deleteUser(row)">Delete</button>
+                 
+              </ng-template>
+          </ngx-datatable-column>
+
+          
+         
+      </ngx-datatable>
+      
+  </md-card-content>
+
+</md-card>
+</div>
