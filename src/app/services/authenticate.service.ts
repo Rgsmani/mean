@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
-import {UserComponent} from "../../user/user.component";
+import {UserComponent} from "../user/user.component";
 import { Router } from '@angular/router';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+import 'rxjs/add/operator/map';
 
 var users = [
   new UserComponent('admin','admin'),
@@ -10,7 +12,10 @@ var users = [
 @Injectable()
 export class AuthenticateService {
 
-  constructor(private _router: Router) { }
+user: any = [];
+  private _postUrl =  "http://localhost:3000/api/checkuser";
+
+  constructor(private _router: Router, private _http: Http) { }
 
   logout() {
     localStorage.removeItem("user");
@@ -18,6 +23,17 @@ export class AuthenticateService {
   }
 
   login(user) {
+
+  console.log(user);
+  
+      let headers = new Headers({'Content-Type': 'application/json'});
+      let options = new RequestOptions({ headers: headers });
+      this.user =  this._http.post(this._postUrl, JSON.stringify(user), options)
+        .map((response: Response) => response.json());
+
+  console.log("log user");
+    console.log(this.user);
+
     let authenticatedUser = users.find(u => u.username === user.username);
     if (authenticatedUser && authenticatedUser.password === user.password){
       localStorage.setItem("user", authenticatedUser.username);

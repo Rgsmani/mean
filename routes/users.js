@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var bcrypt = require('bcrypt');
 var mongojs = require('mongojs');
 var db = mongojs("mongodb://manikandan:password@ds047085.mlab.com:47085/crm");
 
@@ -19,12 +19,25 @@ module.exports = {
         var save_data = req.body;
         console.log("in backend");
         console.log(save_data);
+         bcrypt.hash(save_data.password, 10, function (err, hash){
+                if (err) {
+               res.send(err);
+                }
+                save_data.password = hash;
+                console.log("hash");
+                console.log(save_data.password);
+            });
+
+             console.log(save_data);
         if (!save_data.empid) {
             res.status(400);
             res.json({
                 "error": "Bad Data"
             });
         } else {
+
+           
+
             db.users.save(save_data, function (err, users) {
                 if (err) {
                     res.send(err);
@@ -53,7 +66,16 @@ module.exports = {
         //  req.params.id = mongojs.ObjectId(req.params.id);
         //     }
         delete update_data._id;
-        
+
+           bcrypt.hash(update_data.password, 10, function (err, hash){
+                if (err) {
+               res.send(err);
+                }
+                update_data.password = hash;
+                console.log("hash");
+                console.log(update_data.password);
+            });
+
         if (!update_data) {
             res.status(400);
             res.json({

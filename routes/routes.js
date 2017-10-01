@@ -10,6 +10,7 @@ var users = require('./users');
 var designations = require('./designations');
 var roles = require('./roles');
 var departments = require('./departments');
+var auth = require('./authentication');
 
 
 
@@ -39,6 +40,9 @@ router.route('/users').get(users.getUsers);
 router.route('/saveuser').post(users.saveUser);
 router.route('/updateuser/:id').put(users.updateUser);
 router.route('/deleteuser/:id').delete(users.deleteUser);
+
+// Auth
+router.route('/checkuser').post(auth.checkUser);
 
 
 
