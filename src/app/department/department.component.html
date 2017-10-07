@@ -5,25 +5,25 @@
 
 
 
-<md-card class="example-card">
+<mat-card class="example-card">
 
 
   <div class="for_add" *ngIf="!showEdit" >
-      <md-card-header>
+      <mat-card-header>
    
-    <md-card-title>Add Department</md-card-title>
+    <mat-card-title>Add Department</mat-card-title>
     
-  </md-card-header>
+  </mat-card-header>
     <form #departmentAddForm="ngForm" (ngSubmit)="AddDepartment(departmentAddForm.value)">
 <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
   
 
   <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
     <div>
-      <md-input-container fxFlex>
-  <input mdInput #departmentref="ngModel" required placeholder="Department" name="department" [(ngModel)]="department" value="">
+      <mat-form-field fxFlex>
+  <input matInput #departmentref="ngModel" required placeholder="Department" name="department" [(ngModel)]="department" value="">
 
-</md-input-container>
+</mat-form-field>
 
     </div>
     <div class="error-msg-block" *ngIf="departmentref.errors && (departmentref.dirty || departmentref.touched)">
@@ -36,7 +36,7 @@
 
 
     <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
-     <button type="submit" color="primary" md-raised-button>Add</button>
+     <button type="submit" color="primary" mat-raised-button>Add</button>
      
   </div>
   </div>
@@ -45,21 +45,21 @@
 
 
   <div class="for_update" *ngIf="showEdit">
-      <md-card-header>
+      <mat-card-header>
    
-    <md-card-title>Edit Department<button type="button" color="" (click)="showAdd()" md-raised-button>Add New</button></md-card-title>
+    <mat-card-title>Edit Department<button type="button" color="" (click)="showAdd()" mat-raised-button>Add New</button></mat-card-title>
     
-  </md-card-header>
+  </mat-card-header>
  <form #departmentEditForm="ngForm" (ngSubmit)="updateDepartment()">
 <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
   
 
   <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
     <div>
-      <md-input-container fxFlex>
-  <input mdInput #departmentref="ngModel" required placeholder="Department" name="department" [(ngModel)]="selected_details.department" value="">
+      <mat-form-field fxFlex>
+  <input matInput #departmentref="ngModel" required placeholder="Department" name="department" [(ngModel)]="selected_details.department" value="">
 
-</md-input-container>
+</mat-form-field>
 
     </div>
     <div class="error-msg-block" *ngIf="departmentref.errors && (departmentref.dirty || departmentref.touched)">
@@ -72,7 +72,7 @@
 
 
     <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
-     <button type="submit" color="primary" md-raised-button>Update</button>
+     <button type="submit" color="primary" mat-raised-button>Update</button>
      
   </div>
   </div>
@@ -81,16 +81,16 @@
 
 
 
-  <md-card-content>
+  <mat-card-content>
 
-  </md-card-content>
+  </mat-card-content>
 
-</md-card>
+</mat-card>
 
-<md-card class="example-card">
+<mat-card class="example-card">
 
 
-  <md-card-content>
+  <mat-card-content>
 
 
 
@@ -115,9 +115,9 @@
               </ng-template>
 
               <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                    <button md-raised-button (click)="updateDetails(row)">Edit</button>
+                    <button mat-raised-button (click)="updateDetails(row)">Edit</button>
                    
-         <button md-raised-button (click)="deleteDepartment(row)">Delete</button>
+         <button mat-raised-button (click)="deleteDepartment(row)">Delete</button>
                  
               </ng-template>
           </ngx-datatable-column>
@@ -126,6 +126,6 @@
          
       </ngx-datatable>
       
-  </md-card-content>
+  </mat-card-content>
 
-</md-card>
+</mat-card>

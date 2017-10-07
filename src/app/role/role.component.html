@@ -5,26 +5,26 @@
 
 
 
-<md-card class="example-card">
+<mat-card class="example-card">
 
 
   <div class="for_add" *ngIf="!showEdit" >
     
-      <md-card-header>
+      <mat-card-header>
    
-    <md-card-title>Add Role</md-card-title>
+    <mat-card-title>Add Role</mat-card-title>
     
-  </md-card-header>
+  </mat-card-header>
     <form #roleAddForm="ngForm" (ngSubmit)="AddRole(roleAddForm.value)">
 <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
   
 
   <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
     <div>
-      <md-input-container fxFlex>
-  <input mdInput #roleref="ngModel" required placeholder="Role" name="role" [(ngModel)]="role" value="">
+      <mat-form-field fxFlex>
+  <input matInput #roleref="ngModel" required placeholder="Role" name="role" [(ngModel)]="role" value="">
 
-</md-input-container>
+</mat-form-field>
 
     </div>
     <div class="error-msg-block" *ngIf="roleref.errors && (roleref.dirty || roleref.touched)">
@@ -37,7 +37,7 @@
 
 
     <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
-     <button type="submit" color="primary" md-raised-button>Add</button>
+     <button type="submit" color="primary" mat-raised-button>Add</button>
      
   </div>
   </div>
@@ -47,21 +47,21 @@
 
   <div class="for_update" *ngIf="showEdit">
     
-      <md-card-header>
+      <mat-card-header>
    
-    <md-card-title>Edit Role<button type="button" color="" (click)="showAdd()" md-raised-button>Add New</button></md-card-title>
+    <mat-card-title>Edit Role<button type="button" color="" (click)="showAdd()" mat-raised-button>Add New</button></mat-card-title>
     
-  </md-card-header>
+  </mat-card-header>
  <form #roleEditForm="ngForm" (ngSubmit)="UpdateRole()">
 <div fxLayout="row" fxLayout.xs="column"  fxLayoutAlign="start center" fxLayoutWrap> 
   
 
   <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
     <div>
-      <md-input-container fxFlex>
-  <input mdInput #roleref="ngModel" required placeholder="Role" name="role" [(ngModel)]="selected_details.role" value="">
+      <mat-form-field fxFlex>
+  <input matInput #roleref="ngModel" required placeholder="Role" name="role" [(ngModel)]="selected_details.role" value="">
 
-</md-input-container>
+</mat-form-field>
 
     </div>
     <div class="error-msg-block" *ngIf="roleref.errors && (roleref.dirty || roleref.touched)">
@@ -74,7 +74,7 @@
 
 
     <div class="input-control"  fxFlex="33.33%" fxFlex.sm="50%">
-     <button type="submit" color="primary" md-raised-button>Update</button>
+     <button type="submit" color="primary" mat-raised-button>Update</button>
      
   </div>
   </div>
@@ -83,16 +83,16 @@
 
 
 
-  <md-card-content>
+  <mat-card-content>
 
-  </md-card-content>
+  </mat-card-content>
 
-</md-card>
+</mat-card>
 
-<md-card class="example-card">
+<mat-card class="example-card">
 
 
-  <md-card-content>
+  <mat-card-content>
 
 
 
@@ -117,9 +117,9 @@
               </ng-template>
 
               <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                    <button md-raised-button (click)="updateDetails(row)">Edit</button>
+                    <button mat-raised-button (click)="updateDetails(row)">Edit</button>
                   
-         <button md-raised-button (click)="deleteRole(row)">Delete</button>
+         <button mat-raised-button (click)="deleteRole(row)">Delete</button>
                  
               </ng-template>
           </ngx-datatable-column>
@@ -127,6 +127,6 @@
           
          
       </ngx-datatable>
-  </md-card-content>
+  </mat-card-content>
 
-</md-card>
+</mat-card>

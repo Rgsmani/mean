@@ -3,15 +3,19 @@ import { routing, appRoutingProviders } from './routes/app.routes.module';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule,
-          MdSidenavModule,
-          MdDatepickerModule,
-          DateAdapter,          
-          MdNativeDateModule
- } from '@angular/material';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+// import { MaterialModule,
+//           MdSidenavModule,
+//           MdDatepickerModule,
+//           DateAdapter,          
+//           MdNativeDateModule
+// } from '@angular/material';
+import { ExampleMaterialModule } from './material-module';
+// import {MatMenuModule} from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RouterModule }   from '@angular/router';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import 'hammerjs';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
@@ -50,10 +54,12 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     FlexLayoutModule,   
     BrowserAnimationsModule,
     routing,
-    MaterialModule,
-    MdSidenavModule,
-    MdDatepickerModule,    
-    MdNativeDateModule,
+    ExampleMaterialModule,
+    NoopAnimationsModule,
+//      MaterialModule,
+//     MdSidenavModule,
+//     MdDatepickerModule,    
+// MdNativeDateModule,   
     NgxDatatableModule,
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)   
   ],
