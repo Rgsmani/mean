@@ -211,10 +211,10 @@
 
  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
  <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
-               <button color="primary" class="mini-button"  mat-raised-button (click)="addTeamLead()">                 
+               <button type="button" color="primary" class="mini-button"  mat-raised-button (click)="addTeamLead()">                 
                  <span *ngIf="showTeamLead == false">Add Team Lead</span>
                  <span *ngIf="showTeamLead == true">Remove Team Lead</span></button>
-                    <button color="primary" class="mini-button"  mat-raised-button (click)="addManager()">                 
+                    <button type="button" color="primary" class="mini-button"  mat-raised-button (click)="addManager()">                 
                  <span *ngIf="showManager == false">Add Manager</span>
                  <span *ngIf="showManager == true">Remove Manager</span></button>              
           </div>
@@ -247,8 +247,8 @@
 
     </mat-card-content>
 
-    <button color="primary" [disabled]="!userAddForm.form.valid" mat-raised-button>Add User</button>
-      <button color=""  mat-raised-button (click)="resetUser()">Reset</button>
+    <button color="primary" type="submit" [disabled]="!userAddForm.form.valid" mat-raised-button>Add User</button>
+      <button color="" type="button"  mat-raised-button (click)="resetUser()">Reset</button>
 
   </mat-card>
 </form> 
@@ -474,10 +474,10 @@
 
  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
  <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
-               <button color="primary" class="mini-button"  mat-raised-button (click)="addTeamLead()">                 
+               <button type="button" color="primary" class="mini-button"  mat-raised-button (click)="addTeamLead()">                 
                  <span *ngIf="showTeamLead == false">Add Team Lead</span>
                  <span *ngIf="showTeamLead == true">Remove Team Lead</span></button>
-                    <button color="primary" class="mini-button"  mat-raised-button (click)="addManager()">                 
+                    <button type="button" color="primary" class="mini-button"  mat-raised-button (click)="addManager()">                 
                  <span *ngIf="showManager == false">Add Manager</span>
                  <span *ngIf="showManager == true">Remove Manager</span></button>              
           </div>
@@ -512,8 +512,8 @@
 
     </mat-card-content>
 
-    <button color="primary" [disabled]="!userEditForm.form.valid" mat-raised-button>Update</button>
-     <button color=""  mat-raised-button (click)="resetUser()">Reset</button>
+    <button color="primary" type="submit" [disabled]="!userEditForm.form.valid" mat-raised-button>Update</button>
+     <button color="" type="button"  mat-raised-button (click)="resetUser()">Reset</button>
 
   </mat-card>
 </form> 

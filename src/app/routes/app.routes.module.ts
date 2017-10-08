@@ -9,6 +9,7 @@ import { UserComponent } from '../adduser/adduser.component';
 import { DesignationComponent } from '../designation/designation.component';
 import { RoleComponent } from '../role/role.component';
 import { DepartmentComponent } from '../department/department.component';
+import { FormGeneratorComponent } from '../form-generator/form-generator.component';
 
 
 export const routes: Routes = [
@@ -21,7 +22,8 @@ export const routes: Routes = [
         { path: 'user', component: UserComponent },
          { path: 'designation', component: DesignationComponent },
           { path: 'role', component: RoleComponent },
-          { path: 'department', component: DepartmentComponent }
+          { path: 'department', component: DepartmentComponent },
+          { path: 'form-generator', component: FormGeneratorComponent }
       ]
       
  },

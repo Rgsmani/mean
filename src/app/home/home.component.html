@@ -1,73 +1,66 @@
-
-  <div class="header_toolbar mat-elevation-z6">
+<div class="header_toolbar mat-elevation-z6">
   <mat-toolbar color="primary">
- <div fxLayout="row" fxLayoutAlign="space-between center" class="header_layout"> 
- <span>CRM</span>
+    <div fxLayout="row" fxLayoutAlign="space-between center" class="header_layout">
+      <span>CRM</span>
 
-<div>
-  <button mat-icon-button [matMenuTriggerFor]="headermenu">
-      <mat-icon>more_vert</mat-icon>
-    </button>
-    <mat-menu x-position="before" #headermenu="matMenu">
-    <button mat-menu-item>My Profile</button>
-    <button mat-menu-item (click)="logout()">Logout</button>
-  </mat-menu>
-</div>
-     
- </div>
-   
+      <div>
+        <button mat-icon-button [matMenuTriggerFor]="headermenu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu x-position="before" #headermenu="matMenu">
+          <button mat-menu-item>My Profile</button>
+          <button mat-menu-item (click)="logout()">Logout</button>
+        </mat-menu>
+      </div>
 
-  
+    </div>
+
+
+
   </mat-toolbar>
-  </div>
+</div>
 
 
 
 
 
- 
+
 
 
 <mat-sidenav-container class="example-container sidemenu_container">
 
- 
-   <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true" >
-     <perfect-scrollbar class="container" [config]="config">
-     <mat-list>
- <mat-list-item><a [routerLink]="['./dashboard']" mat-menu-item>Dashboard</a></mat-list-item>
- <mat-list-item>
-   <a  [routerLink]="['./user']" mat-menu-item >Users</a>
-  
- 
- </mat-list-item>
-  
-  <mat-list-item>
-    <a [matMenuTriggerFor]="menu" mat-menu-item>Master</a>
-<mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
-  <a [routerLink]="['./designation']"  mat-menu-item>Designation</a>  
-  <a [routerLink]="['./role']" mat-menu-item>Role</a>
-  <a [routerLink]="['./department']" mat-menu-item>Department</a>  
-</mat-menu>    
-  </mat-list-item>
 
-</mat-list>
-</perfect-scrollbar>
+  <mat-sidenav #sidenav class="example-sidenav" mode="side" opened="true">
+    <perfect-scrollbar class="container" [config]="config">
+      <mat-list>
+
+        <mat-list-item>
+          <a [routerLink]="['./dashboard']" mat-menu-item>Dashboard</a>
+        </mat-list-item>
+
+        <mat-list-item>
+          <a [routerLink]="['./user']" mat-menu-item>Users</a>
+        </mat-list-item>
+
+        <mat-list-item>
+          <a [matMenuTriggerFor]="menu" mat-menu-item>Master</a>
+          <mat-menu #menu="matMenu" xPosition="before" [overlapTrigger]="false">
+            <a [routerLink]="['./designation']" mat-menu-item>Designation</a>
+            <a [routerLink]="['./role']" mat-menu-item>Role</a>
+            <a [routerLink]="['./department']" mat-menu-item>Department</a>
+          </mat-menu>
+        </mat-list-item>
+
+        <mat-list-item>
+          <a [routerLink]="['./form-generator']" mat-menu-item>Form Generator</a>
+        </mat-list-item>
+
+      </mat-list>
+    </perfect-scrollbar>
   </mat-sidenav>
- 
-
-<perfect-scrollbar class="container" style="height:calc(100vh)" [config]="config">
-  
-<div class="main-content"> 
-
-  <router-outlet></router-outlet>
-   
-</div>
-
-</perfect-scrollbar>
+  <perfect-scrollbar class="container" style="height:calc(100vh)" [config]="config">
+    <div class="main-content">
+      <router-outlet></router-outlet>
+    </div>
+  </perfect-scrollbar>
 </mat-sidenav-container>
-
-
-
-
-
-

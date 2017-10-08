@@ -13,6 +13,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 //           MdNativeDateModule
 // } from '@angular/material';
 import { ExampleMaterialModule } from './material-module';
+import {ToastModule} from 'ng2-toastr/ng2-toastr';
 // import {MatMenuModule} from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
 import { RouterModule }   from '@angular/router';
@@ -31,6 +32,7 @@ import { UserComponent } from './adduser/adduser.component';
 import { DesignationComponent } from './designation/designation.component';
 import { RoleComponent } from './role/role.component';
 import { DepartmentComponent } from './department/department.component';
+import { FormGeneratorComponent } from './form-generator/form-generator.component';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -46,7 +48,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     UserComponent,
     DesignationComponent,
     RoleComponent,
-    DepartmentComponent
+    DepartmentComponent,
+    FormGeneratorComponent
   ],
   imports: [
     BrowserModule,
@@ -63,6 +66,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 // MdNativeDateModule,   
     DataTablesModule,
     NgxDatatableModule,
+    ToastModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)   
   ],
   providers: [appRoutingProviders],

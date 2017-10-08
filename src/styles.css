@@ -32,8 +32,12 @@ md-sidenav {
   position: fixed;
    width: 100%; 
    top:0;
-   z-index:999;
+   z-index:2;
    
+}
+.toast-top-right {
+  top: 70px !important;
+  right: 12px;
 }
 .header_layout{
   width: 100%;
