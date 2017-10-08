@@ -17,7 +17,7 @@ export class DesignationComponent implements OnInit {
   deletedddesignation: Array<Designation>;
   designation:Array<any>;
 private showEdit: boolean = false;
-
+dtOptions: DataTables.Settings = {};
 selected_details: any = [];
 
    init_details = {
@@ -31,6 +31,10 @@ selected_details: any = [];
   ngOnInit() {  
 
    this.getDes();
+   this.dtOptions = {
+    pagingType: 'full_numbers'
+    
+  };
 
   }
 

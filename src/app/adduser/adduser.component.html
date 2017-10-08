@@ -84,11 +84,13 @@
         </div>
 
         <div class="input-control" fxFlex="33.33%" fxFlex.sm="50%">
-
-          <mat-radio-group [(ngModel)]="adding_values.gender" required name="gender" #genderref="ngModel">
+           <div> <label>Gender</label></div>
+             
+            <mat-radio-group [(ngModel)]="adding_values.gender" required name="gender" #genderref="ngModel">
             <mat-radio-button value="1">Male</mat-radio-button>
             <mat-radio-button value="2">Female</mat-radio-button>
           </mat-radio-group>
+           
 
         </div>
 
@@ -537,13 +539,15 @@
 
 
   <ngx-datatable
-        [rows]="users"      
+        [rows]="users"   
+        
         [columnMode]="'force'"
         [headerHeight]="50"
         [rowHeight]="'auto'"
         [footerHeight]="0" 
-        [limit]="5"     
-         class="fullscreen">
+        [limit]="10" 
+            
+         class="">
          <ngx-datatable-column name="S.No" width="80">
           <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
             <strong>{{rowIndex+1}}</strong>
@@ -566,9 +570,19 @@
               </ng-template>
 
               <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                    <button mat-raised-button (click)="updateDetails(row)">Edit</button>
-                   
-         <button mat-raised-button (click)="deleteUser(row)">Delete</button>
+                <div fxLayout="row" fxLayoutAlign="start start">
+                    <button  mat-icon-button (click)="updateDetails(row)">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    <button  mat-icon-button (click)="deleteUser(row)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                 
+                  
+                
+                  
+                    </div>
+        
                  
               </ng-template>
           </ngx-datatable-column>
@@ -576,6 +590,9 @@
           
          
       </ngx-datatable>
+ 
+
+
       
   </mat-card-content>
 

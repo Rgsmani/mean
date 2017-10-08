@@ -4,9 +4,15 @@
  <div fxLayout="row" fxLayoutAlign="space-between center" class="header_layout"> 
  <span>CRM</span>
 
+<div>
   <button mat-icon-button [matMenuTriggerFor]="headermenu">
       <mat-icon>more_vert</mat-icon>
     </button>
+    <mat-menu x-position="before" #headermenu="matMenu">
+    <button mat-menu-item>My Profile</button>
+    <button mat-menu-item (click)="logout()">Logout</button>
+  </mat-menu>
+</div>
      
  </div>
    
@@ -19,11 +25,7 @@
 
 
 
- <mat-menu x-position="before" #headermenu="matMenu">
-    <button mat-menu-item>My Profile</button>
-    <button mat-menu-item (click)="logout()">Logout</button>
-  </mat-menu>
-
+ 
 
 
 <mat-sidenav-container class="example-container sidemenu_container">

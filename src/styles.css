@@ -32,7 +32,7 @@ md-sidenav {
   position: fixed;
    width: 100%; 
    top:0;
-   z-index:1;
+   z-index:999;
    
 }
 .header_layout{
@@ -40,6 +40,7 @@ md-sidenav {
 }
 .example-sidenav{
   margin-top: 64px;
+  width: 230px;
 }
 .example-sidenav a{
   box-sizing: border-box;

@@ -3,6 +3,7 @@ import { routing, appRoutingProviders } from './routes/app.routes.module';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { DataTablesModule } from 'angular-datatables';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 // import { MaterialModule,
@@ -60,6 +61,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
 //     MdSidenavModule,
 //     MdDatepickerModule,    
 // MdNativeDateModule,   
+    DataTablesModule,
     NgxDatatableModule,
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)   
   ],

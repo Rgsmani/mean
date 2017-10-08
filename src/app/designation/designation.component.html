@@ -115,9 +115,15 @@
               </ng-template>
 
               <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
-                    <button mat-raised-button (click)="updateDetails(row)">Edit</button>
-                    {{value.designation | json}}
-         <button mat-raised-button (click)="deleteDes(row)">Delete</button>
+                  
+
+         <button mat-icon-button (click)="updateDetails(row)">
+            <mat-icon class="md-20" >edit</mat-icon>
+          </button>
+   
+          <button mat-icon-button (click)="deleteDes(row)">
+            <mat-icon class="md-20">delete</mat-icon>
+      </button>
                  
               </ng-template>
           </ngx-datatable-column>
