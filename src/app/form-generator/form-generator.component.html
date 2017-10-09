@@ -91,7 +91,7 @@
                 </div>
                 <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
                   <div>
-                    <mat-slide-toggle [(ngModel)]="textboxValues.required" name="required">Required</mat-slide-toggle>
+                    <mat-slide-toggle [(ngModel)]="textboxValues.required" required name="required">Required</mat-slide-toggle>
 
 
                   </div>
@@ -146,7 +146,7 @@
 
                 <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
                   <div>
-                    <mat-slide-toggle [(ngModel)]="textareaValues.required" name="required">Required</mat-slide-toggle>
+                    <mat-slide-toggle [(ngModel)]="textareaValues.required" required name="required">Required</mat-slide-toggle>
 
 
 
@@ -171,57 +171,58 @@
 
 
           <div *ngSwitchCase="'Radio button'">
-              <form #radioAddForm="ngForm" (ngSubmit)="addRadio(radioAddForm.value)">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+            <form #radioAddForm="ngForm" (ngSubmit)="addRadio(radioAddForm.value)">
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
 
 
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <mat-form-field fxFlex>
-                    <input matInput placeholder="Label" required value="" [(ngModel)]="radioValues.label" name="label" #labelref="ngModel">
-                  </mat-form-field>
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-form-field fxFlex>
+                      <input matInput placeholder="Label" required value="" [(ngModel)]="radioValues.label" name="label" #labelref="ngModel">
+                    </mat-form-field>
+                  </div>
+
                 </div>
+                <div class="input-control" *ngFor="let option of radioOptions; let i=index" [attr.data-index]="i" fxFlex="100%" fxFlex.sm="100%">
 
-              </div>
-              <div class="input-control" *ngFor="let option of radioInputs; let i=index" [attr.data-index]="i" fxFlex="100%" fxFlex.sm="100%">
-             
                   <mat-form-field fxFlex>
-                    <input matInput placeholder='Option {{i+1}}'  required value="" [(ngModel)]="radioValues.options[i]" name='option_{{i+1}}' #optionref="ngModel">
-            
+                    <input matInput placeholder='Option {{i+1}}' required value="" [(ngModel)]="radioValues.options[i]" name='option_{{i+1}}'
+                      #optionref="ngModel">
+
                   </mat-form-field>
-           
-                <button fxFlex *ngIf="i>=1" type="button" matTooltip="Remove Option"  mat-icon-button color="warn" (click)="removeRadioOption(i)">
-                    <mat-icon class="md-24" >clear</mat-icon>
+
+                  <button fxFlex *ngIf="i>=1" type="button" matTooltip="Remove Option" mat-icon-button color="warn" (click)="removeRadioOption(i)">
+                    <mat-icon class="md-24">clear</mat-icon>
                   </button>
-               
-              </div>
-
-
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-
-                <button matTooltip="Add Option"  type="button" mat-icon-button color="primary" (click)="addRadioOption()">
-                  <mat-icon class="md-24" >add</mat-icon>
-                </button>
-               
-              </div>
-
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                    <mat-slide-toggle [(ngModel)]="radioValues.required" name="required">Required</mat-slide-toggle>
-
 
                 </div>
 
-              </div>
-             
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <button type="submit" [disabled]="!radioAddForm.form.valid" color="primary" mat-raised-button>Add</button>
-                  <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+
+                  <button matTooltip="Add Option" type="button" mat-icon-button color="primary" (click)="addRadioOption()">
+                    <mat-icon class="md-24">add</mat-icon>
+                  </button>
+
+                </div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-slide-toggle [(ngModel)]="radioValues.required"  required name="required">Required</mat-slide-toggle>
+
+
+                  </div>
+
+                </div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <button type="submit" [disabled]="!radioAddForm.form.valid" color="primary" mat-raised-button>Add</button>
+                    <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
 
           </div>
 
@@ -231,43 +232,58 @@
 
 
           <div *ngSwitchCase="'Checkboxes'">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+            <form #checkboxAddForm="ngForm" (ngSubmit)="addCheckbox(checkboxAddForm.value)">
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
 
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-form-field fxFlex>
+                      <input matInput placeholder="Label" required value="" [(ngModel)]="checkboxValues.label" name="label" #labelref="ngModel">
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <div class="input-control" *ngFor="let option of checkboxOptions; let i=index" [attr.data-index]="i" fxFlex="100%" fxFlex.sm="100%">
+
                   <mat-form-field fxFlex>
-                    <input matInput placeholder="Label" required value="" [(ngModel)]="label" name="label" #labelref="ngModel">
+                    <input matInput placeholder='Option {{i+1}}' required value="" [(ngModel)]="checkboxValues.options[i]" name='option_{{i+1}}'
+                      #optionref="ngModel">
+
                   </mat-form-field>
-                </div>
 
-              </div>
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <mat-form-field fxFlex>
-                    <input matInput placeholder="Option 1" required value="" [(ngModel)]="option1" name="option1" #option1ref="ngModel">
-                  </mat-form-field>
-                </div>
-
-              </div>
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <button class="mini-button" mat-raised-button>Add Option</button>
-              </div>
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <mat-slide-toggle required>Required</mat-slide-toggle>
-
+                  <button fxFlex *ngIf="i>=1" type="button" matTooltip="Remove Option" mat-icon-button color="warn" (click)="removeCheckboxOption(i)">
+                    <mat-icon class="md-24">clear</mat-icon>
+                  </button>
 
                 </div>
 
-              </div>
 
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <button color="primary" mat-raised-button>Add</button>
-                  <button color="" mat-raised-button>Reset</button>
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+
+                  <button matTooltip="Add Option" type="button" mat-icon-button color="primary" (click)="addCheckboxOption()">
+                    <mat-icon class="md-24">add</mat-icon>
+                  </button>
+
+                </div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-slide-toggle [(ngModel)]="checkboxValues.required" required name="required">Required</mat-slide-toggle>
+
+
+                  </div>
+
+                </div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <button type="submit" [disabled]="!checkboxAddForm.form.valid" color="primary" mat-raised-button>Add</button>
+                    <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
 
 
@@ -275,42 +291,58 @@
 
 
           <div *ngSwitchCase="'Dropdown'">
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
+            <form #dropdownAddForm="ngForm" (ngSubmit)="addDropdown(dropdownAddForm.value)">
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-form-field fxFlex>
+                      <input matInput placeholder="Label" required value="" [(ngModel)]="dropdownValues.label" name="label" #labelref="ngModel">
+                    </mat-form-field>
+                  </div>
+
+                </div>
+                <div class="input-control" *ngFor="let option of dropdownOptions; let i=index" [attr.data-index]="i" fxFlex="100%" fxFlex.sm="100%">
+
                   <mat-form-field fxFlex>
-                    <input matInput placeholder="Label" required value="" [(ngModel)]="label" name="label" #labelref="ngModel">
+                    <input matInput placeholder='Option {{i+1}}' required value="" [(ngModel)]="dropdownValues.options[i]" name='option_{{i+1}}'
+                      #optionref="ngModel">
+
                   </mat-form-field>
-                </div>
 
-              </div>
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <mat-form-field fxFlex>
-                    <input matInput placeholder="Option 1" required value="" [(ngModel)]="option1" name="option1" #option1ref="ngModel">
-                  </mat-form-field>
-                </div>
-
-              </div>
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <button class="mini-button" mat-raised-button>Add Option</button>
-              </div>
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <mat-slide-toggle required>Required</mat-slide-toggle>
-
+                  <button fxFlex *ngIf="i>=1" type="button" matTooltip="Remove Option" mat-icon-button color="warn" (click)="removeDropdownOption(i)">
+                    <mat-icon class="md-24">clear</mat-icon>
+                  </button>
 
                 </div>
 
-              </div>
 
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <button color="primary" mat-raised-button>Add</button>
-                  <button color="" mat-raised-button>Reset</button>
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+
+                  <button matTooltip="Add Option" type="button" mat-icon-button color="primary" (click)="addDropdownOption()">
+                    <mat-icon class="md-24">add</mat-icon>
+                  </button>
+
+                </div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-slide-toggle [(ngModel)]="dropdownValues.required" required name="required">Required</mat-slide-toggle>
+
+
+                  </div>
+
+                </div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <button type="submit" [disabled]="!dropdownAddForm.form.valid" color="primary" mat-raised-button>Add</button>
+                    <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
 
 
@@ -318,33 +350,37 @@
 
           <div *ngSwitchCase="'Date'">
 
-            <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+            <form #dateAddForm="ngForm" (ngSubmit)="addDate(dateAddForm.value)">
+              <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
 
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <mat-form-field fxFlex>
-                    <input matInput placeholder="Label" required value="" [(ngModel)]="label" name="label" #labelref="ngModel">
-                  </mat-form-field>
-                </div>
 
-              </div>
-
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <mat-slide-toggle required>Required</mat-slide-toggle>
-
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-form-field fxFlex>
+                      <input matInput placeholder="Label" required value="" [(ngModel)]="dateValues.label" name="label" #labelref="ngModel">
+                    </mat-form-field>
+                  </div>
 
                 </div>
 
-              </div>
 
-              <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
-                <div>
-                  <button color="primary" mat-raised-button>Add</button>
-                  <button color="" mat-raised-button>Reset</button>
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <mat-slide-toggle [(ngModel)]="dateValues.required" required name="required">Required</mat-slide-toggle>
+
+
+                  </div>
+
+                </div>
+
+                <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+                  <div>
+                    <button type="submit" [disabled]="!dateAddForm.form.valid" color="primary" mat-raised-button>Add</button>
+                    <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
+                  </div>
                 </div>
               </div>
-            </div>
+            </form>
           </div>
 
 
@@ -352,7 +388,7 @@
       </div>
       <div fxFlex="50%">
         {{formValues | json}}
-        </div>
+      </div>
 
 
 
