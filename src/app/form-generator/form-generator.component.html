@@ -386,8 +386,9 @@
 
         </div>
       </div>
-      <div fxFlex="50%">
-        {{formValues | json}}
+      <div fxFlex="50%">      
+        <dynamic-form [formValues]='formValues'></dynamic-form>
+        
       </div>
 
 

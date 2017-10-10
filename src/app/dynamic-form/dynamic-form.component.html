@@ -1,0 +1,51 @@
+<h3>Dynamic Form</h3>
+
+<form #dynamicForm="ngForm" (ngSubmit)="addDynamicForm(dynamicForm.value)">
+  <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>
+
+
+
+    <div *ngFor="let forminput of formValues; let i = index" class="form-row">
+    
+      <div [ngSwitch]="forminput.controltype">
+
+        <div *ngSwitchCase="'Text Box'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+          <div>
+            <mat-form-field fxFlex>
+              <input matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required" value=""  [(ngModel)]="textinputValues[i]"
+                [name]="forminput.key">
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <div *ngSwitchCase="'Textarea'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+          <div>
+            <mat-form-field fxFlex>
+              <textarea matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required"  value="" [(ngModel)]="textinputValues[i]"
+                [name]="forminput.key"></textarea>
+            </mat-form-field>
+          </div>
+
+        </div>
+
+        <!--     
+        <select [id]="forminput.key" *ngSwitchCase="'Dropdown'">
+          <option *ngFor="let opt of forminput.options" [value]="opt.key">{{opt}}</option>
+        </select> -->
+
+        <!-- <input *ngSwitchWhen="'checkbox'" [ngControl]="forminput.key"
+                [id]="forminput.key" [type]="forminput.type"> -->
+
+      </div>
+    </div>
+
+    <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+      <div>
+        <button type="submit" [disabled]="!dynamicForm.form.valid" color="primary" mat-raised-button>Add</button>
+        <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
+      </div>
+    </div>
+  </div>
+</form>
+{{formValues | json}}
