@@ -8,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DynamicFormComponent implements OnInit {
 
-  textinputValues: any = {};
+  textinputValues: any = {
+    check:[]
+  };
   textareaValues: any = {};
 
   constructor() { }
@@ -19,7 +21,7 @@ export class DynamicFormComponent implements OnInit {
   addDynamicForm(value){
     console.log("Dyanamic form");
     console.log(value);
-    console.log("textareaValues");
-    console.log(this.textareaValues);
+    console.log("textinputValues");
+    console.log(this.textinputValues);
   }
 }

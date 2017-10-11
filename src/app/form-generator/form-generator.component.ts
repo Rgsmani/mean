@@ -112,7 +112,24 @@ export class FormGeneratorComponent implements OnInit {
     this.textboxValues = {};
   }
   addTextarea(value) {
+
+
     this.textareaValues = value;
+   
+    let label = this.textareaValues.label.toLowerCase();
+   
+    let x = label.split(" ");   
+
+    if(x[2]){
+      let y = x[0].concat(x[1]);
+      let z = y.concat(x[1]);
+      this.textareaValues.key = z;
+    }else if(x[2]){
+      let y = x[0].concat(x[1]);
+      this.textareaValues.key = y;
+    }else{
+      this.textareaValues.key = x[0];
+    }
     this.textareaValues.controltype = this.selectedCtype;
     this.formValues.push(this.textareaValues);
     console.log("this.formValues");
@@ -132,6 +149,23 @@ export class FormGeneratorComponent implements OnInit {
 
     console.log('this.radioValues');
     console.log(this.radioValues);
+
+    let label = this.radioValues.label.toLowerCase();
+    
+     let x = label.split(" ");   
+ 
+     if(x[2]){
+       let y = x[0].concat(x[1]);
+       let z = y.concat(x[1]);
+       this.radioValues.key = z;
+     }else if(x[2]){
+       let y = x[0].concat(x[1]);
+       this.radioValues.key = y;
+     }else{
+       this.radioValues.key = x[0];
+     }
+
+
     this.radioValues.controltype = this.selectedCtype;
     this.formValues.push(this.radioValues);
     console.log("this.formValues");
@@ -153,6 +187,22 @@ export class FormGeneratorComponent implements OnInit {
 
     console.log('this.checkboxValues');
     console.log(this.checkboxValues);
+    let label = this.checkboxValues.label.toLowerCase();
+    
+     let x = label.split(" ");   
+ 
+     if(x[2]){
+       let y = x[0].concat(x[1]);
+       let z = y.concat(x[1]);
+       this.checkboxValues.key = z;
+     }else if(x[2]){
+       let y = x[0].concat(x[1]);
+       this.checkboxValues.key = y;
+     }else{
+       this.checkboxValues.key = x[0];
+     }
+
+
     this.checkboxValues.controltype = this.selectedCtype;
     this.formValues.push(this.checkboxValues);
     console.log("this.formValues");
@@ -175,6 +225,22 @@ export class FormGeneratorComponent implements OnInit {
 
     console.log('this.dropdownValues');
     console.log(this.dropdownValues);
+
+    let label = this.dropdownValues.label.toLowerCase();
+    
+     let x = label.split(" ");   
+ 
+     if(x[2]){
+       let y = x[0].concat(x[1]);
+       let z = y.concat(x[1]);
+       this.dropdownValues.key = z;
+     }else if(x[2]){
+       let y = x[0].concat(x[1]);
+       this.dropdownValues.key = y;
+     }else{
+       this.dropdownValues.key = x[0];
+     }
+
     this.dropdownValues.controltype = this.selectedCtype;
     this.formValues.push(this.dropdownValues);
     console.log("this.formValues");
@@ -191,6 +257,22 @@ export class FormGeneratorComponent implements OnInit {
 
     console.log('this.dropdownValues');
     console.log(this.dateValues);
+
+    let label = this.dateValues.label.toLowerCase();
+    
+     let x = label.split(" ");   
+ 
+     if(x[2]){
+       let y = x[0].concat(x[1]);
+       let z = y.concat(x[1]);
+       this.dateValues.key = z;
+     }else if(x[2]){
+       let y = x[0].concat(x[1]);
+       this.dateValues.key = y;
+     }else{
+       this.dateValues.key = x[0];
+     }
+
     this.dateValues.controltype = this.selectedCtype;
     this.formValues.push(this.dateValues);
     console.log("this.formValues");

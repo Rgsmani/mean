@@ -5,7 +5,7 @@
 
 
 
-    <div *ngFor="let forminput of formValues; let i = index" class="form-row">
+    <div *ngFor="let forminput of formValues; let i = index" class="form-row" fxFlex="100%">
     
       <div [ngSwitch]="forminput.controltype">
 
@@ -28,6 +28,27 @@
           </div>
 
         </div>
+
+        <div *ngSwitchCase="'Radio button'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+          <div> <label>{{forminput.label}}</label></div>
+            
+           <mat-radio-group [(ngModel)]="textinputValues[i]" [required]="forminput.required" [name]="forminput.key" >
+           <mat-radio-button *ngFor="let opt of forminput.options; let i = index" [value]="opt">{{opt}}</mat-radio-button>
+          
+         </mat-radio-group>
+          
+
+       </div>
+       <div *ngSwitchCase="'Checkboxes'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+        <div> <label>{{forminput.label}}</label></div>
+          
+        <mat-checkbox *ngFor="let opt of forminput.options; let checkopt = index" [name]="opt" [(ngModel)]="textinputValues.check[checkopt]">{{opt}}</mat-checkbox>
+        
+        <input type="hidden" name="checkboxlabel" [(ngModel)]="forminput.key">
+     
+        
+
+     </div>
 
         <!--     
         <select [id]="forminput.key" *ngSwitchCase="'Dropdown'">
