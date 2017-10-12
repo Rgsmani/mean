@@ -6,13 +6,13 @@
 
 
     <div *ngFor="let forminput of formValues; let i = index" class="form-row" fxFlex="100%">
-    
+
       <div [ngSwitch]="forminput.controltype">
 
         <div *ngSwitchCase="'Text Box'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
           <div>
             <mat-form-field fxFlex>
-              <input matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required" value=""  [(ngModel)]="textinputValues[i]"
+              <input matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="textinputValues[i]"
                 [name]="forminput.key">
             </mat-form-field>
           </div>
@@ -22,7 +22,7 @@
         <div *ngSwitchCase="'Textarea'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
           <div>
             <mat-form-field fxFlex>
-              <textarea matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required"  value="" [(ngModel)]="textinputValues[i]"
+              <textarea matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="textinputValues[i]"
                 [name]="forminput.key"></textarea>
             </mat-form-field>
           </div>
@@ -30,25 +30,56 @@
         </div>
 
         <div *ngSwitchCase="'Radio button'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
-          <div> <label>{{forminput.label}}</label></div>
-            
-           <mat-radio-group [(ngModel)]="textinputValues[i]" [required]="forminput.required" [name]="forminput.key" >
-           <mat-radio-button *ngFor="let opt of forminput.options; let i = index" [value]="opt">{{opt}}</mat-radio-button>
-          
-         </mat-radio-group>
-          
+          <div>
+            <label>{{forminput.label}}</label>
+          </div>
 
-       </div>
-       <div *ngSwitchCase="'Checkboxes'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
-        <div> <label>{{forminput.label}}</label></div>
-          
-        <mat-checkbox *ngFor="let opt of forminput.options; let checkopt = index" [name]="opt" [(ngModel)]="textinputValues.check[checkopt]">{{opt}}</mat-checkbox>
-        
-        <input type="hidden" name="checkboxlabel" [(ngModel)]="forminput.key">
-     
-        
+          <mat-radio-group [(ngModel)]="textinputValues[i]" [required]="forminput.required" [name]="forminput.key">
+            <mat-radio-button *ngFor="let opt of forminput.options; let i = index" [value]="opt">{{opt}}</mat-radio-button>
 
-     </div>
+          </mat-radio-group>
+
+
+        </div>
+
+        <div *ngSwitchCase="'Checkboxes'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+          <div>
+            <label>{{forminput.label}}</label>
+          </div>
+
+          <mat-checkbox *ngFor="let opt of forminput.options; let checkopt = index" [name]="opt" [(ngModel)]='opt[opt]'>{{opt}}</mat-checkbox>
+
+          <input type="hidden" name="label_{{i}}" [(ngModel)]="forminput.label">
+
+
+
+        </div>
+
+        <div *ngSwitchCase="'Dropdown'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+          <mat-form-field fxFlex>
+          <mat-select [placeholder]="forminput.label" fxFlex [(ngModel)]="textinputValues[i]" [required]="forminput.required" [name]="forminput.key" >
+            <mat-option *ngFor="let opt of forminput.options; let dropopt = index" [value]="opt">
+              {{ opt }}
+            </mat-option>
+          </mat-select>
+          </mat-form-field>
+        </div>
+
+        <div *ngSwitchCase="'Date'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+            <div>
+                <label>{{forminput.label}}</label>
+            </div>
+          <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>             
+            <div fxFlex *ngFor="let opt of forminput.dateoptions; let dropopt = index">               
+              <mat-form-field>
+                <input matInput [placeholder]="opt" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="dateValues[((i*39474)+dropopt)/0.348236]"
+                  [name]="opt">
+              </mat-form-field>
+            </div>
+           
+          </div>
+           <input type="hidden" name="label_{{i}}" [(ngModel)]="forminput.label">
+        </div>
 
         <!--     
         <select [id]="forminput.key" *ngSwitchCase="'Dropdown'">
@@ -61,7 +92,7 @@
       </div>
     </div>
 
-    <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+    <div class="input-control" *ngIf="formValues.length != 0" fxFlex="100%" fxFlex.sm="100%">
       <div>
         <button type="submit" [disabled]="!dynamicForm.form.valid" color="primary" mat-raised-button>Add</button>
         <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
@@ -70,3 +101,4 @@
   </div>
 </form>
 {{formValues | json}}
+{{formValues.length | json}}

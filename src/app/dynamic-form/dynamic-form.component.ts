@@ -12,6 +12,8 @@ export class DynamicFormComponent implements OnInit {
     check:[]
   };
   textareaValues: any = {};
+  checkboxvalues: any = {};
+  dateValues: any = {};
 
   constructor() { }
 

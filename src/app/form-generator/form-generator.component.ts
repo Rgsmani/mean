@@ -30,7 +30,8 @@ export class FormGeneratorComponent implements OnInit {
     required: false
   };
   dateValues: any = {
-    required: false
+    required: false,
+    dateoptions:['Day','Month','Year']
   };
 
   radioOptions = [''];
@@ -76,7 +77,8 @@ export class FormGeneratorComponent implements OnInit {
     required: false    
     };
     this.dateValues= {
-      required: false
+      required: false,
+      dateoptions:['Day','Month','Year']
     };
     this.radioOptions = [''];
     this.checkboxOptions = [''];
@@ -279,7 +281,10 @@ export class FormGeneratorComponent implements OnInit {
     console.log(this.formValues);
 
     this.toastr.success(this.dateValues.label + ' is added!');
-    this.dateValues = {};
+    this.dateValues= {
+      required: false,
+      dateoptions:['Day','Month','Year']
+    };
 
   }
 
