@@ -66,28 +66,26 @@
         </div>
 
         <div *ngSwitchCase="'Date'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+            <div  *ngFor="let datevalue of forminput.datefields; let count = index"> 
             <div>
                 <label>{{forminput.label}}</label>
             </div>
           <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>             
-            <div fxFlex *ngFor="let opt of forminput.dateoptions; let dropopt = index">               
+            <div fxFlex *ngFor="let opt of forminput.dateoptions; let dateopt = index; trackBy:customTrackBy" >               
               <mat-form-field>
-                <input matInput [placeholder]="opt" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="dateValues[((i*39474)+dropopt)/0.348236]"
-                  [name]="opt">
+                <input matInput [placeholder]="opt" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="datefields[count].date[dateopt]"
+                  name="{{'name'+opt}}">
               </mat-form-field>
+              {{count | json}}{{dateopt | json}}
+            
             </div>
            
           </div>
-           <input type="hidden" name="label_{{i}}" [(ngModel)]="forminput.label">
+          <input type="hidden" name="label" [value]="forminput.label" [(ngModel)]="datefields[count].label">
         </div>
+</div>
 
-        <!--     
-        <select [id]="forminput.key" *ngSwitchCase="'Dropdown'">
-          <option *ngFor="let opt of forminput.options" [value]="opt.key">{{opt}}</option>
-        </select> -->
-
-        <!-- <input *ngSwitchWhen="'checkbox'" [ngControl]="forminput.key"
-                [id]="forminput.key" [type]="forminput.type"> -->
+      
 
       </div>
     </div>
@@ -100,5 +98,5 @@
     </div>
   </div>
 </form>
-{{formValues | json}}
-{{formValues.length | json}}
+<!-- {{formValues | json}}
+{{formValues.length | json}} -->
