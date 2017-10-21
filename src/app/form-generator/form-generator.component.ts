@@ -38,9 +38,16 @@ export class FormGeneratorComponent implements OnInit {
   checkboxOptions = [''];
   dropdownOptions = [''];
   formValues: any = [];
+  newformValues: any =[];
 
 
+    inputFieldCounts = [];
+    textareaFieldCounts = [];
+    radioFieldCounts = [];
+    checkFieldCounts = [];
+    dropdownFieldCounts = [];
     dateFieldCounts = [];
+  
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -90,6 +97,8 @@ export class FormGeneratorComponent implements OnInit {
   }
 
   addTextbox(value) {
+    this.inputFieldCounts.push(' ');
+
     this.textboxValues = value;
     const label = this.textboxValues.label.toLowerCase();
 
@@ -111,16 +120,20 @@ export class FormGeneratorComponent implements OnInit {
     console.log('combineLabel');
     console.log(this.textboxValues.key);
     this.textboxValues.controltype = this.selectedCtype;
+    this.textboxValues.inputfieldscount = this.inputFieldCounts.length;
     this.formValues.push(this.textboxValues);
+    this.newformValues = Object.assign([], this.formValues);
     console.log('this.formValues');
     console.log(this.formValues);
+    console.log('this.newformValues');
+    console.log(this.newformValues);
 
     this.toastr.success(this.textboxValues.label + ' is added!');
     this.textboxValues = {};
   }
   addTextarea(value) {
 
-
+    this.textareaFieldCounts.push(' ');
     this.textareaValues = value;
 
     const label = this.textareaValues.label.toLowerCase();
@@ -139,9 +152,13 @@ export class FormGeneratorComponent implements OnInit {
       this.textareaValues.key = x[0];
     }
     this.textareaValues.controltype = this.selectedCtype;
+    this.textareaValues.textareaFieldCounts = this.textareaFieldCounts.length;
     this.formValues.push(this.textareaValues);
+    this.newformValues = Object.assign([], this.formValues);
     console.log('this.formValues');
     console.log(this.formValues);
+    console.log('this.newformValues');
+    console.log(this.newformValues);
 
     this.toastr.success(this.textareaValues.label + ' is added!');
     this.textareaValues = {};
@@ -154,7 +171,7 @@ export class FormGeneratorComponent implements OnInit {
     this.radioOptions.splice(index, 1);
   }
   addRadio(value) {
-
+    this.radioFieldCounts.push(' ');
     console.log('this.radioValues');
     console.log(this.radioValues);
 
@@ -175,9 +192,13 @@ export class FormGeneratorComponent implements OnInit {
 
 
     this.radioValues.controltype = this.selectedCtype;
+    this.radioValues.radioFieldCounts = this.radioFieldCounts.length;
     this.formValues.push(this.radioValues);
+    this.newformValues = Object.assign([], this.formValues);
     console.log('this.formValues');
     console.log(this.formValues);
+    console.log('this.newformValues');
+    console.log(this.newformValues);
 
     this.toastr.success(this.radioValues.label + ' is added!');
     this.radioValues = {
@@ -192,7 +213,7 @@ export class FormGeneratorComponent implements OnInit {
     this.checkboxOptions.splice(index, 1);
   }
   addCheckbox(value) {
-
+    this.checkFieldCounts.push(' ');
     console.log('this.checkboxValues');
     console.log(this.checkboxValues);
     const label = this.checkboxValues.label.toLowerCase();
@@ -213,9 +234,13 @@ export class FormGeneratorComponent implements OnInit {
 
 
     this.checkboxValues.controltype = this.selectedCtype;
+    this.checkboxValues.checkFieldCounts = this.checkFieldCounts.length;
     this.formValues.push(this.checkboxValues);
+    this.newformValues = Object.assign([], this.formValues);
     console.log('this.formValues');
     console.log(this.formValues);
+    console.log('this.newformValues');
+    console.log(this.newformValues);
 
     this.toastr.success(this.checkboxValues.label + ' is added!');
     this.checkboxValues = {
@@ -231,7 +256,7 @@ export class FormGeneratorComponent implements OnInit {
     this.dropdownOptions.splice(index, 1);
   }
   addDropdown(value) {
-
+    this.dropdownFieldCounts.push(' ');
     console.log('this.dropdownValues');
     console.log(this.dropdownValues);
 
@@ -249,11 +274,14 @@ export class FormGeneratorComponent implements OnInit {
      }else{
        this.dropdownValues.key = x[0];
      }
-
+     this.dropdownValues.dropdownFieldCounts = this.dropdownFieldCounts.length;
     this.dropdownValues.controltype = this.selectedCtype;
     this.formValues.push(this.dropdownValues);
+    this.newformValues = Object.assign([], this.formValues);
     console.log('this.formValues');
     console.log(this.formValues);
+    console.log('this.newformValues');
+    console.log(this.newformValues);
 
     this.toastr.success(this.dropdownValues.label + ' is added!');
     this.dropdownValues = {
@@ -283,11 +311,14 @@ export class FormGeneratorComponent implements OnInit {
      }else{
        this.dateValues.key = x[0];
      }
-     this.dateValues.datefields = this.dateFieldCounts;
+     this.dateValues.datefields = this.dateFieldCounts.length;
     this.dateValues.controltype = this.selectedCtype;
     this.formValues.push(this.dateValues);
+    this.newformValues = Object.assign([], this.formValues);
     console.log('this.formValues');
     console.log(this.formValues);
+    console.log('this.newformValues');
+    console.log(this.newformValues);
 
     this.toastr.success(this.dateValues.label + ' is added!');
     this.dateValues = {
