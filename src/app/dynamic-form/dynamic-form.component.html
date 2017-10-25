@@ -47,7 +47,7 @@
             <label>{{forminput.label}}</label>
           </div>
 
-          <mat-checkbox *ngFor="let opt of forminput.options; let checkopt = index"  (change)="onChange(forminput.label, opt, $event)" [name]="opt" [(ngModel)]="checkboxvalues[forminput.checkFieldCounts - 1].checks[checkopt]">{{opt}}</mat-checkbox>
+          <mat-checkbox *ngFor="let opt of forminput.options; let checkopt = index"  (change)="showCheck()" [name]="opt" [(ngModel)]="checkboxvalues[forminput.checkFieldCounts - 1].checks[checkopt]">{{opt}}</mat-checkbox>
 
      
 

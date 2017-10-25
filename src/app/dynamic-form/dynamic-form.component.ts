@@ -127,33 +127,30 @@ inputValues:any = [];
   
   console.log(this.formValues);  
    
-  
+    this.onChange();
   }
 
+  showCheck(){
+    console.log('onChange this.checkboxvalues');
+    console.log(this.checkboxvalues);
+  }
 
-  onChange(label, opt, event) {
+  onChange() {
   // const option = opt;
    //const e = event;
-   console.log('opt');
-  console.log(opt);
-   console.log(event)
+  
    console.log('onChange this.formValues');
     console.log(this.formValues);
    if(this.formValues.length >= 1){
     this.formValues.forEach(eachObj => {
       if(eachObj.controltype == 'Checkboxes'){
+        this.checkboxvalues[parseInt(eachObj.checkFieldCounts) - 1].label = eachObj.label;
+        eachObj.options.forEach(value => {        
+         
+          this.checkboxvalues[parseInt(eachObj.checkFieldCounts) - 1].values.push(value);
+          this.checkboxvalues[parseInt(eachObj.checkFieldCounts) - 1].checks.push(false);
         
-        eachObj.options.forEach(value => {
-         if(value == opt){
-          // this.checkedValues.push(value);
-          // console.log(this.checkedValues);
-           console.log('in If');
-           console.log(value);
-          let checkc =  parseInt(eachObj.checkFieldCounts);
-          console.log(this.checkboxvalues);
-          this.checkboxvalues[checkc - 1].values.push(value);
-          this.checkboxvalues[checkc - 1].label = label;
-         }
+      
       });
     
 
@@ -174,7 +171,7 @@ inputValues:any = [];
     console.log(this.checkboxvalues);
 
   }
-  this.checkvalarray++;
+ 
 
   }
    
