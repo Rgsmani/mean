@@ -32,8 +32,8 @@ inputValues:any = [];
    
   }
 
- 
-  
+ checkvalarray = 0;
+  checkedValues = [];
 
   ngOnChanges(changes: SimpleChanges ) {
     // only run when property "data" changed
@@ -92,7 +92,8 @@ inputValues:any = [];
        let checkc =  parseInt(eachObj.checkFieldCounts);
        console.log(checkc);
         this.checkboxvalues[checkc - 1] = {
-          values: [],
+          values: [],     
+          checks:[],    
           label: eachObj.label
            
         };
@@ -133,26 +134,48 @@ inputValues:any = [];
   onChange(label, opt, event) {
   // const option = opt;
    //const e = event;
- //  console.log(option)
-   console.log(event.checked)
+   console.log('opt');
+  console.log(opt);
+   console.log(event)
    console.log('onChange this.formValues');
     console.log(this.formValues);
    if(this.formValues.length >= 1){
     this.formValues.forEach(eachObj => {
       if(eachObj.controltype == 'Checkboxes'){
-          if(eachObj.label == label && event.checked){
-            let checkc =  parseInt(eachObj.checkFieldCounts);
-            console.log(checkc);
-             this.checkboxvalues[checkc - 1].values.push(opt);
-             this.checkboxvalues[checkc - 1].label = label;
+        
+        eachObj.options.forEach(value => {
+         if(value == opt){
+          // this.checkedValues.push(value);
+          // console.log(this.checkedValues);
+           console.log('in If');
+           console.log(value);
+          let checkc =  parseInt(eachObj.checkFieldCounts);
+          console.log(this.checkboxvalues);
+          this.checkboxvalues[checkc - 1].values.push(value);
+          this.checkboxvalues[checkc - 1].label = label;
+         }
+      });
+    
+
+          // if(eachObj.label == label && event.checked){
+          //   let checkc =  parseInt(eachObj.checkFieldCounts);
+          //   console.log(checkc);
+          //   console.log('opt');
+          //   console.log(opt);
+          //    this.checkboxvalues[checkc - 1].values[this.checkvalarray] = opt;
+          //    this.checkboxvalues[checkc - 1].label = label;
             
-          }
+          // }
+
+
       }
     });
     console.log('onChange this.checkboxvalues');
     console.log(this.checkboxvalues);
 
   }
+  this.checkvalarray++;
+
   }
    
 
