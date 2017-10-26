@@ -88,15 +88,24 @@ inputValues:any = [];
          };
       }
       if(eachObj.controltype == 'Checkboxes'){
-        console.log(eachObj.checkFieldCounts);
-       let checkc =  parseInt(eachObj.checkFieldCounts);
-       console.log(checkc);
-        this.checkboxvalues[checkc - 1] = {
+
+         
+     
+        this.checkboxvalues[eachObj.checkFieldCounts - 1] = {
           values: [],     
           checks:[],    
-          label: eachObj.label
-           
+          label: eachObj.label           
         };
+   
+        eachObj.options.forEach(value => {        
+          
+           this.checkboxvalues[eachObj.checkFieldCounts - 1].values.push(value);
+           this.checkboxvalues[eachObj.checkFieldCounts - 1].checks.push(false);
+         
+       
+       });
+
+       // this.onChange();
       }
     
       if(eachObj.controltype == 'Date'){
@@ -122,12 +131,12 @@ inputValues:any = [];
 }
 
   ngOnInit() {
-    console.log('changed this.formValues');
+    console.log('ngOninit');
   
   
   console.log(this.formValues);  
    
-    this.onChange();
+    
   }
 
   showCheck(){
@@ -135,45 +144,6 @@ inputValues:any = [];
     console.log(this.checkboxvalues);
   }
 
-  onChange() {
-  // const option = opt;
-   //const e = event;
-  
-   console.log('onChange this.formValues');
-    console.log(this.formValues);
-   if(this.formValues.length >= 1){
-    this.formValues.forEach(eachObj => {
-      if(eachObj.controltype == 'Checkboxes'){
-        this.checkboxvalues[parseInt(eachObj.checkFieldCounts) - 1].label = eachObj.label;
-        eachObj.options.forEach(value => {        
-         
-          this.checkboxvalues[parseInt(eachObj.checkFieldCounts) - 1].values.push(value);
-          this.checkboxvalues[parseInt(eachObj.checkFieldCounts) - 1].checks.push(false);
-        
-      
-      });
-    
-
-          // if(eachObj.label == label && event.checked){
-          //   let checkc =  parseInt(eachObj.checkFieldCounts);
-          //   console.log(checkc);
-          //   console.log('opt');
-          //   console.log(opt);
-          //    this.checkboxvalues[checkc - 1].values[this.checkvalarray] = opt;
-          //    this.checkboxvalues[checkc - 1].label = label;
-            
-          // }
-
-
-      }
-    });
-    console.log('onChange this.checkboxvalues');
-    console.log(this.checkboxvalues);
-
-  }
- 
-
-  }
    
 
   // tslint:disable-next-line:one-line
