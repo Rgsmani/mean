@@ -23,7 +23,7 @@ inputValues:any = [];
   datefields = [];
   checkboxvalues: any = [];
   form: any = [];
-  dyanmicvalues: any = [];
+  dyanmicvalues: any = {};
   textinputValues: any = {
     check: [],
   };
@@ -31,7 +31,7 @@ inputValues:any = [];
   constructor() { 
    
   }
-
+  checktrue = [];
  checkvalarray = 0;
   checkedValues = [];
 
@@ -160,10 +160,74 @@ inputValues:any = [];
     console.log(this.dropdownvalues);
     console.log('this.checkboxvalues');
     console.log(this.checkboxvalues);
-
     console.log('this.datefields');
-   console.log(this.datefields);
+   console.log(this.datefields);  
+
+
+this.inputValues.forEach(obj => {
+  console.log('obj');
+  console.log(obj);
+  this.dyanmicvalues[obj.label] = obj.value;
+  console.log('this.dyanmicvalues');
+  console.log(this.dyanmicvalues);
+});
+
+this.textareaValues.forEach(obj => {
+  console.log('obj');
+  console.log(obj);
+  this.dyanmicvalues[obj.label] = obj.value;
+  console.log('this.dyanmicvalues');
+  console.log(this.dyanmicvalues);
+});
+
+this.radiovalues.forEach(obj => {
+  console.log('obj');
+  console.log(obj);
+  this.dyanmicvalues[obj.label] = obj.value;
+  console.log('this.dyanmicvalues');
+  console.log(this.dyanmicvalues);
+});
+
+this.dropdownvalues.forEach(obj => {
+  console.log('obj');
+  console.log(obj);
+  this.dyanmicvalues[obj.label] = obj.value;
+  console.log('this.dyanmicvalues');
+  console.log(this.dyanmicvalues);
+});
+
+this.checkboxvalues.forEach(obj => {
+  console.log('obj');
+  console.log(obj);
+
+  obj.checks.forEach((checkvalue, chechindex) => {
+    if(checkvalue == true){
+      obj.values.forEach((value, valueindex) => {
+        if(chechindex == valueindex){
+          this.checktrue.push(value);
+          console.log(value); 
+          console.log('this.checktrue'); 
+          console.log(this.checktrue); 
+        }    
+      });
+    }
   
+  });
+
+  this.dyanmicvalues[obj.label] = this.checktrue;
+  this.checktrue = [];
+
+  console.log('this.dyanmicvalues');
+  console.log(this.dyanmicvalues);
+});
+
+this.datefields.forEach(obj => {
+  console.log('obj');
+  console.log(obj);
+  this.dyanmicvalues[obj.label] = obj.date;
+  console.log('this.dyanmicvalues');
+  console.log(this.dyanmicvalues);
+});
   
   }
 
