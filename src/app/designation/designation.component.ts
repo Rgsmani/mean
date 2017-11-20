@@ -24,8 +24,9 @@ selected_details: any = [];
      _id: "",
      designation: ""
    };
-
-
+   first: number = 0;
+   tablerows = [5,10,25,50,100];
+   tableshow = 10;
   constructor(private _designationService: DesignationService) { }
 
   ngOnInit() {  
@@ -36,6 +37,10 @@ selected_details: any = [];
     
   };
 
+  }
+  changeShowList(){
+    this.getDes();
+    console.log('changeShow');
   }
 
 

@@ -91,9 +91,42 @@
 
 
   <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+          <mat-form-field fxFlex fxFlex="20">
+          <input matInput #gb placeholder="Search" value="">
+          </mat-form-field>
 
+          <mat-form-field fxFlex fxFlex="20">
+              <mat-select placeholder="Show" (change)="changeShowList()" #tablerow fxFlex [(ngModel)]="tableshow" name="show">
+                <mat-option *ngFor="let row of tablerows" [value]="row">
+                  {{ row }}
+                </mat-option>
+              </mat-select>
+               </mat-form-field>
+        </div>
+      <p-dataTable [value]="designations" [rows]="tableshow" [globalFilter]="gb" [paginator]="true"  [(first)]="first">
+          <p-column header="S.No" sortable="true">
+              <ng-template let-col let-row="rowData" let-ri="rowIndex" pTemplate="body">
+                  <span>{{ri + 1}}</span>
+              </ng-template>
+          </p-column>    
 
-
+          <p-column field="designation" header="Designation" [sortable]="true"></p-column>
+         
+          <p-column header="Actions" >
+              <ng-template let-col let-row="rowData" let-ri="rowIndex" pTemplate="body">
+                 
+                  <button mat-icon-button (click)="updateDetails(row)">
+                      <mat-icon class="md-20" >edit</mat-icon>
+                    </button>
+             
+                    <button mat-icon-button (click)="deleteDes(row)">
+                      <mat-icon class="md-20">delete</mat-icon>
+                </button>
+              </ng-template>
+          </p-column>     
+      </p-dataTable>
+<!-- 
   <ngx-datatable
         [rows]="designations"      
         [columnMode]="'force'"
@@ -130,7 +163,7 @@
 
           
          
-      </ngx-datatable>
+      </ngx-datatable> -->
   </mat-card-content>
 
 </mat-card>

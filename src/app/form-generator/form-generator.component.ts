@@ -328,6 +328,23 @@ export class FormGeneratorComponent implements OnInit {
 
   }
 
+  deleteFormInput(value){
+    console.log('value in parent');
+    console.log(value);
+
+    this.formValues.forEach((element, index) => {
+      console.log('parent element');
+      console.log(element);
+      if(value.label === element.label){
+       this.formValues.splice(index, 1);
+       console.log('this.formValues');
+       console.log(this.formValues);
+      }
+    });
+    this.newformValues = Object.assign([], this.formValues);
+
+  }
+
 
 
 

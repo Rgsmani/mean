@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+
+import {Component,OnInit, ElementRef, ViewChild} from '@angular/core';
 import { UsersService } from '../services/users.service';
 import { User } from '../models/userModel';
 import { Designation } from '../models/designationModel';
@@ -8,6 +9,7 @@ import { DepartmentService } from '../services/department.service';
 import { Role } from '../models/roleModel';
 import { RoleService } from '../services/role.service';
 
+
 @Component({
   selector: 'app-adduser',
   templateUrl: './adduser.component.html',
@@ -15,6 +17,10 @@ import { RoleService } from '../services/role.service';
   providers:[UsersService, DesignationService, DepartmentService, RoleService]
 })
 export class UserComponent implements OnInit {
+
+
+  @ViewChild('filter') filter: ElementRef;
+
 
  designations: Array<Designation>;
   departments: Array<Department>;
@@ -31,7 +37,7 @@ private showList: boolean = true;
 
 private showTeamLead: boolean = false;
 private showManager: boolean = false;
-
+first: number = 0;
   constructor(private _usersService: UsersService, private _designationService: DesignationService,
   private _departmentService: DepartmentService, private _roleService: RoleService ) { }
 
@@ -39,12 +45,15 @@ bloodgroups = ['A+','O+','B+','AB+','A-','O-','B-','AB-'];
 
 shifts = ['Morning','Evening', 'Night'];
 
-
+tablerows = [5,10,25,50,100];
+tableshow = 10;
   ngOnInit() {
+    //this.dataSource = new ExampleDataSource(this.exampleDatabase, this.paginator);
     this.getUsers();
     this.getDesignations();
      this.getDepartments();
-      this.getRoles();
+      this.getRoles();   
+    
   }
 
    getDesignations(){
@@ -165,7 +174,10 @@ shifts = ['Morning','Evening', 'Night'];
     
   }
 
-  
+  changeShowList(){
+    this.getUsers();
+    console.log('changeShow');
+  } 
 
   //  bloodgroups = [
   //   {value: 'A+'},

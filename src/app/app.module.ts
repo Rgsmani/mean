@@ -12,7 +12,12 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 //           DateAdapter,          
 //           MdNativeDateModule
 // } from '@angular/material';
+
+import { DataTableModule, SharedModule } from 'primeng/primeng';
+
 import { ExampleMaterialModule } from './material-module';
+
+
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 // import {MatMenuModule} from '@angular/material';
 import { FlexLayoutModule } from "@angular/flex-layout";
@@ -62,6 +67,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     routing,
     ExampleMaterialModule,
     NoopAnimationsModule,
+    DataTableModule, 
+    SharedModule,
 //      MaterialModule,
 //     MdSidenavModule,
 //     MdDatepickerModule,    

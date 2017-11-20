@@ -387,7 +387,7 @@
         </div>
       </div>
       <div fxFlex="50%">      
-        <dynamic-form [formValues]='newformValues'></dynamic-form>
+        <dynamic-form [formValues]='newformValues' (deleteInput)="deleteFormInput($event)"></dynamic-form>
         
       </div>
 

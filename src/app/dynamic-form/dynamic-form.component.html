@@ -10,26 +10,39 @@
       <div [ngSwitch]="forminput.controltype">
 
         <div *ngSwitchCase="'Text Box'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
-          <div>
+          <div fxFlex="70%">
             <mat-form-field fxFlex>
               <input matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="inputValues[forminput.inputfieldscount - 1].value"
                 [name]="forminput.label">
             </mat-form-field>
           </div>
+          <div fxFlex="30%">
+              <button  type="button" matTooltip="Remove" mat-icon-button color="warn" (click)="removeTextInput(forminput)">
+                  <mat-icon class="md-24">clear</mat-icon>
+                </button>
+          </div>
 
         </div>
 
+
+
         <div *ngSwitchCase="'Textarea'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
-          <div>
+            <div fxFlex="70%">
             <mat-form-field fxFlex>
               <textarea matInput [placeholder]="forminput.label" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="textareaValues[forminput.textareaFieldCounts - 1].value"
                 [name]="forminput.label"></textarea>
             </mat-form-field>
           </div>
+          <div fxFlex="30%">
+              <button  type="button" matTooltip="Remove" mat-icon-button color="warn" (click)="removeTextInput(forminput)">
+                  <mat-icon class="md-24">clear</mat-icon>
+                </button>
+          </div>
 
         </div>
 
         <div *ngSwitchCase="'Radio button'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+            <div fxFlex="70%">
           <div>
             <label>{{forminput.label}}</label>
           </div>
@@ -38,23 +51,35 @@
             <mat-radio-button *ngFor="let opt of forminput.options; let i = index" [value]="opt">{{opt}}</mat-radio-button>
 
           </mat-radio-group>
-
+          </div>
+          <div fxFlex="30%">
+              <button  type="button" matTooltip="Remove" mat-icon-button color="warn" (click)="removeTextInput(forminput)">
+                  <mat-icon class="md-24">clear</mat-icon>
+                </button>
+          </div>
 
         </div>
 
         <div *ngSwitchCase="'Checkboxes'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+            <div fxFlex="70%">
           <div>
             <label>{{forminput.label}}</label>
           </div>
 
           <mat-checkbox *ngFor="let opt of forminput.options; let checkopt = index"  (change)="showCheck()" [name]="opt" [(ngModel)]="checkboxvalues[forminput.checkFieldCounts - 1].checks[checkopt]">{{opt}}</mat-checkbox>
-
+          </div>
+          <div fxFlex="30%">
+              <button  type="button" matTooltip="Remove" mat-icon-button color="warn" (click)="removeTextInput(forminput)">
+                  <mat-icon class="md-24">clear</mat-icon>
+                </button>
+          </div>
      
 
 
         </div>
 
         <div *ngSwitchCase="'Dropdown'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
+            <div fxFlex="70%">
           <mat-form-field fxFlex>
           <mat-select [placeholder]="forminput.label" fxFlex [(ngModel)]="dropdownvalues[forminput.dropdownFieldCounts - 1].value" [required]="forminput.required" [name]="forminput.key" >
             <mat-option *ngFor="let opt of forminput.options; let dropopt = index" [value]="opt">
@@ -62,29 +87,44 @@
             </mat-option>
           </mat-select>
           </mat-form-field>
+          </div>
+          <div fxFlex="30%">
+              <button  type="button" matTooltip="Remove" mat-icon-button color="warn" (click)="removeTextInput(forminput)">
+                  <mat-icon class="md-24">clear</mat-icon>
+                </button>
+          </div>
+
         </div>
 
         <div *ngSwitchCase="'Date'" class="input-control" fxFlex="100%" fxFlex.sm="100%">
             <!-- <div  *ngFor="let datevalue of forminput.datefields; let count = index">  -->
+                <div fxFlex="70%">
             <div>
                 <label>{{forminput.label}}</label>
             </div>
           <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start stretch" fxLayoutWrap>             
-            <div fxFlex *ngFor="let opt of forminput.dateoptions; let dateopt = index;" >               
+            <div fxFlex="33.33%" *ngFor="let opt of forminput.dateoptions; let dateopt = index;" >               
               <mat-form-field>
                 <input matInput [placeholder]="opt" [id]="forminput.key" [required]="forminput.required" value="" [(ngModel)]="datefields[forminput.datefields - 1].date[dateopt]"
                   [name]="opt">
               </mat-form-field>
-              {{forminput.label | json}}{{forminput.datefields - 1 | json}}{{dateopt | json}}
+            
              
             </div>
          
-            
+            </div>
+
           
           </div>
-          {{datefields | json}}
+          <div fxFlex="30%">
+              <button  type="button" matTooltip="Remove" mat-icon-button color="warn" (click)="removeTextInput(forminput)">
+                  <mat-icon class="md-24">clear</mat-icon>
+                </button>
+          </div>
+
          
-        <!-- </div> -->
+         
+      
 </div>
 
       
@@ -92,10 +132,10 @@
       </div>
     </div>
 
-    <!-- <div class="input-control" *ngIf="formValues.length != 0" fxFlex="100%" fxFlex.sm="100%"> -->
-        <div class="input-control" fxFlex="100%" fxFlex.sm="100%">
+  
+        <div class="input-control" *ngIf="formValues.length != 0" fxFlex="100%" fxFlex.sm="100%">
       <div>
-        <button type="submit" [disabled]="!dynamicForm.form.valid" color="primary" mat-raised-button>Add</button>
+        <button type="submit" [disabled]="!dynamicForm.form.valid" color="primary" mat-raised-button>Save</button>
         <button type="button" color="" (click)="reset()" mat-raised-button>Reset</button>
       </div>
     </div>

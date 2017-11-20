@@ -535,9 +535,47 @@
 
 
   <mat-card-content>
+      <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+          <mat-form-field fxFlex fxFlex="20">
+          <input matInput #gb placeholder="Search" value="">
+          </mat-form-field>
+
+          <mat-form-field fxFlex fxFlex="20">
+              <mat-select placeholder="Show" #tablerow (change)="changeShowList()" fxFlex [(ngModel)]="tableshow" name="show">
+                <mat-option *ngFor="let row of tablerows" [value]="row">
+                  {{ row }}
+                </mat-option>
+              </mat-select>
+               </mat-form-field>
+        </div>
+   
+     
+        <p-dataTable [value]="users" [rows]="tableshow" [paginator]="true" [globalFilter]="gb" [responsive]="true" [(first)]="first">
+            <p-column header="S.No" [sortable]="true">
+                <ng-template let-col let-row="rowData" let-ri="rowIndex" pTemplate="body">
+                    <span>{{ri + 1}}</span>
+                </ng-template>
+            </p-column>    
+
+            <p-column field="empid" header="Emp ID" [sortable]="true"></p-column>
+            <p-column field="username" header="User Name" [sortable]="true"></p-column>
+            <p-column header="Actions">
+                <ng-template let-col let-row="rowData" let-ri="rowIndex" pTemplate="body">
+                   
+                    <button  mat-icon-button (click)="updateDetails(row)">
+                        <mat-icon>edit</mat-icon>
+                      </button>
+                    <button  mat-icon-button (click)="deleteUser(row)">
+                        <mat-icon>delete</mat-icon>
+                      </button>
+                </ng-template>
+            </p-column>     
+        </p-dataTable>
+   
+    
 
 
-
+<!-- 
   <ngx-datatable
         [rows]="users"   
         
@@ -590,7 +628,7 @@
           
          
       </ngx-datatable>
- 
+  -->
 
 
       
