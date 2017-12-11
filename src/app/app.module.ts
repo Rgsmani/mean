@@ -39,6 +39,7 @@ import { RoleComponent } from './role/role.component';
 import { DepartmentComponent } from './department/department.component';
 import { FormGeneratorComponent } from './form-generator/form-generator.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
+import { FormListComponent } from './form-list/form-list.component';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -56,7 +57,8 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     RoleComponent,
     DepartmentComponent,
     FormGeneratorComponent,
-    DynamicFormComponent
+    DynamicFormComponent,
+    FormListComponent
   ],
   imports: [
     BrowserModule,

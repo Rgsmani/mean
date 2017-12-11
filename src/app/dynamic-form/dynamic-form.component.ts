@@ -1,10 +1,22 @@
-import { Component, OnChanges, DoCheck, OnInit, SimpleChanges, SimpleChange, Input, Output, EventEmitter } from '@angular/core';
+import {
+  Component,
+  OnChanges,
+  DoCheck,
+  OnInit,
+  SimpleChanges,
+  SimpleChange,
+  Input,
+  Output,
+  EventEmitter
+} from '@angular/core';
+import { DynamicFormService } from '../services/dynamicform.service';
 
 @Component({
   // tslint:disable-next-line:component-selector
   selector: 'dynamic-form',
   templateUrl: './dynamic-form.component.html',
-  styleUrls: ['./dynamic-form.component.css']
+  styleUrls: ['./dynamic-form.component.css'],
+  providers: [DynamicFormService]
 })
 export class DynamicFormComponent implements OnInit {
 
@@ -27,12 +39,19 @@ export class DynamicFormComponent implements OnInit {
     check: [],
   };
   daterandom = 10;
-  constructor() {
-
-  }
+  
   checktrue = [];
   checkvalarray = 0;
   checkedValues = [];
+
+  saveForm: any = {
+    form: [],
+    active: false,
+  };
+
+  constructor(private _dynamicFormService: DynamicFormService) {
+    
+      }
 
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
@@ -40,6 +59,7 @@ export class DynamicFormComponent implements OnInit {
     console.log(changes);
 
     // this.currentChange = changes.formValues;
+
     this.formValues = changes.formValues.currentValue;
 
 
@@ -86,10 +106,9 @@ export class DynamicFormComponent implements OnInit {
             value: '',
           };
         }
+
+
         if (eachObj.controltype == 'Checkboxes') {
-
-
-
           this.checkboxvalues[eachObj.checkFieldCounts - 1] = {
             values: [],
             checks: [],
@@ -119,8 +138,7 @@ export class DynamicFormComponent implements OnInit {
 
 
       });
-    }
-    else {
+    } else {
       console.log("Else Part");
     }
 
@@ -147,22 +165,34 @@ export class DynamicFormComponent implements OnInit {
 
   // tslint:disable-next-line:one-line
   addDynamicForm(value) {
-    console.log('value');
-    console.log(value);
-    console.log('this.inputValues');
-    console.log(this.inputValues);
-    console.log('this.textareaValues');
-    console.log(this.textareaValues);
-    console.log('this.radiovalues');
-    console.log(this.radiovalues);
-    console.log('this.dropdownvalues');
-    console.log(this.dropdownvalues);
-    console.log('this.checkboxvalues');
-    console.log(this.checkboxvalues);
-    console.log('this.datefields');
-    console.log(this.datefields);
+    // console.log('value');
+    // console.log(value);
+    // console.log('this.inputValues');
+    // console.log(this.inputValues);
+    // console.log('this.textareaValues');
+    // console.log(this.textareaValues);
+    // console.log('this.radiovalues');
+    // console.log(this.radiovalues);
+    // console.log('this.dropdownvalues');
+    // console.log(this.dropdownvalues);
+    // console.log('this.checkboxvalues');
+    // console.log(this.checkboxvalues);
+    // console.log('this.datefields');
+    // console.log(this.datefields);
+
+    console.log('this.formValues');
+    console.log(this.formValues);
+    this.saveForm.form = this.formValues;
+    this._dynamicFormService.AddDynamicForm(this.saveForm)
+    .subscribe((value) => {
+     
+      console.log(value);
+     
+    });
 
 
+
+    // Get values from Dynamic Form
     this.inputValues.forEach(obj => {
       console.log('obj');
       console.log(obj);
@@ -231,7 +261,7 @@ export class DynamicFormComponent implements OnInit {
   }
 
 
-  removeTextInput(input){
+  removeTextInput(input) {
     console.log('input');
     console.log(input);
     this.deleteInput.emit(input);

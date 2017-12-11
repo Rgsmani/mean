@@ -10,6 +10,7 @@ var users = require('./users');
 var designations = require('./designations');
 var roles = require('./roles');
 var departments = require('./departments');
+var dynamicform = require('./dynamicform');
 var auth = require('./authentication');
 
 
@@ -40,6 +41,12 @@ router.route('/users').get(users.getUsers);
 router.route('/saveuser').post(users.saveUser);
 router.route('/updateuser/:id').put(users.updateUser);
 router.route('/deleteuser/:id').delete(users.deleteUser);
+
+// Users
+router.route('/dynamicforms').get(dynamicform.getDynamicForm);
+router.route('/savedynamicforms').post(dynamicform.saveDynamicForm);
+router.route('/updatedynamicforms/:id').put(dynamicform.updateDynamicForm);
+router.route('/deletedynamicforms/:id').delete(dynamicform.deleteDynamicForm);
 
 // Auth
 router.route('/checkuser').post(auth.checkUser);

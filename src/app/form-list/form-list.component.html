@@ -1,0 +1,88 @@
+<div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+  <h2>Form List</h2>
+<a [routerLink]="['../form-generator']" mat-raised-button>Create Form</a>
+  </div>
+  
+    
+ 
+  
+  <mat-card class="example-card">
+  
+  
+    <mat-card-content>
+        <div fxLayout="row" fxLayoutAlign="space-between center" fxLayout.xs="column">
+            <mat-form-field fxFlex fxFlex="20">
+            <input matInput #gb placeholder="Search" value="">
+            </mat-form-field>
+  
+            <mat-form-field fxFlex fxFlex="20">
+                <mat-select placeholder="Show" (change)="changeShowList()" #tablerow fxFlex [(ngModel)]="tableshow" name="show">
+                  <mat-option *ngFor="let row of tablerows" [value]="row">
+                    {{ row }}
+                  </mat-option>
+                </mat-select>
+                 </mat-form-field>
+          </div>
+        <p-dataTable [value]="designations" [rows]="tableshow" [globalFilter]="gb" [paginator]="true"  [(first)]="first">
+            <p-column header="S.No" sortable="true">
+                <ng-template let-col let-row="rowData" let-ri="rowIndex" pTemplate="body">
+                    <span>{{ri + 1}}</span>
+                </ng-template>
+            </p-column>    
+  
+            <p-column field="designation" header="Designation" [sortable]="true"></p-column>
+           
+            <p-column header="Actions" >
+                <ng-template let-col let-row="rowData" let-ri="rowIndex" pTemplate="body">
+                   
+                    <button mat-icon-button (click)="updateDetails(row)">
+                        <mat-icon class="md-20" >edit</mat-icon>
+                      </button>
+               
+                      <button mat-icon-button (click)="deleteDes(row)">
+                        <mat-icon class="md-20">delete</mat-icon>
+                  </button>
+                </ng-template>
+            </p-column>     
+        </p-dataTable>
+  <!-- 
+    <ngx-datatable
+          [rows]="designations"      
+          [columnMode]="'force'"
+          [headerHeight]="50"
+          [rowHeight]="'auto'"
+          [footerHeight]="0" 
+          [limit]="5"     
+           class="fullscreen">
+           <ngx-datatable-column name="S.No" width="80">
+            <ng-template let-rowIndex="rowIndex" let-row="row" ngx-datatable-cell-template>
+              <strong>{{rowIndex+1}}</strong>
+            </ng-template>
+          </ngx-datatable-column>
+           <ngx-datatable-column name="Designation"></ngx-datatable-column>        
+  
+            <ngx-datatable-column  [sortable]="false" [canAutoResize]="false" [draggable]="false" [resizeable]="false">
+                <ng-template ngx-datatable-header-template let-value="value" >
+                 <span>Actions</span>
+                </ng-template>
+  
+                <ng-template ngx-datatable-cell-template let-row="row" let-value="value">
+                    
+  
+           <button mat-icon-button (click)="updateDetails(row)">
+              <mat-icon class="md-20" >edit</mat-icon>
+            </button>
+     
+            <button mat-icon-button (click)="deleteDes(row)">
+              <mat-icon class="md-20">delete</mat-icon>
+        </button>
+                   
+                </ng-template>
+            </ngx-datatable-column>
+  
+            
+           
+        </ngx-datatable> -->
+    </mat-card-content>
+  
+  </mat-card>
