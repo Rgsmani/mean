@@ -77,11 +77,11 @@ module.exports = {
     },
 
     deleteDynamicForm: function (req, res) {
-        db.dynamicform.remove({ _id: mongojs.ObjectId(req.params.id) }, function (err, user) {
+        db.dynamicform.remove({ _id: mongojs.ObjectId(req.params.id) }, function (err, form) {
             if (err) {
                 res.send(err);
             }
-            res.json(user);
+            res.json(form);
         });
     }
 

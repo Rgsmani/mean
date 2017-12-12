@@ -28,19 +28,25 @@ user: any = [];
   
       let headers = new Headers({'Content-Type': 'application/json'});
       let options = new RequestOptions({ headers: headers });
-      this.user =  this._http.post(this._postUrl, JSON.stringify(user), options)
-        .map((response: Response) => response.json());
+    this._http.post(this._postUrl, JSON.stringify(user), options)
+        .map((response: Response) => {
+          // console.log('response.json()');       
+          // console.log(response.json()); 
+         this.user = response.json();  
+         console.log('this.user');
+          console.log(this.user);
+          let authenticatedUser = this.user.find(u => u.username === user.username);
+          if (authenticatedUser && authenticatedUser.password === user.password){
+            localStorage.setItem("user", authenticatedUser.username);
+            this._router.navigate(['/home']);
+            return true;
+          }
+          return false;   
+        });
 
-  console.log("log user");
-    console.log(this.user);
+ 
 
-    let authenticatedUser = users.find(u => u.username === user.username);
-    if (authenticatedUser && authenticatedUser.password === user.password){
-      localStorage.setItem("user", authenticatedUser.username);
-      this._router.navigate(['/home']);
-      return true;
-    }
-    return false;
+   
   }
 
   checkCredentials() {

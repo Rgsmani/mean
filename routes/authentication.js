@@ -8,6 +8,7 @@ module.exports = {
    
     checkUser: function (req, res) {
          var loguser = req.body;
+         console.log('checkUser');
          console.log(loguser);
        //  res.send("Welcome to this page for the first time!" + loguser.username);
 
@@ -26,14 +27,15 @@ module.exports = {
 
            console.log(user);
             console.log(loguser.password);
-            bcrypt.compare(loguser.password, user[0].password, function(err, res) {
+            bcrypt.compare(loguser.password, user[0].password, function(err, resp) {
     // res == true
                 console.log("hash checking");
-                    console.log(res);
-                if(res){
+                    console.log(resp);
+                if(resp){
                     req.session.user = user[0];
                     console.log("session user");
-                    console.log(req.session.user);
+                    console.log(req.session.user);  
+                    res.json(req.session.user);                 
                 }
 
 
