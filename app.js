@@ -19,9 +19,13 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(session({
-  secret: 'work hard',
-  resave: true,
-  saveUninitialized: false 
+  key: 'user_sid',
+  secret: 'somerandonstuffs',
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+      expires: 600000
+  }
 }));
 
 // uncomment after placing your favicon in /public

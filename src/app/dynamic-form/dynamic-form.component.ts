@@ -39,7 +39,7 @@ export class DynamicFormComponent implements OnInit {
     check: [],
   };
   daterandom = 10;
-  
+
   checktrue = [];
   checkvalarray = 0;
   checkedValues = [];
@@ -50,9 +50,10 @@ export class DynamicFormComponent implements OnInit {
   };
 
   constructor(private _dynamicFormService: DynamicFormService) {
-    
+
       }
 
+  // tslint:disable-next-line:use-life-cycle-interface
   ngOnChanges(changes: SimpleChanges) {
     // only run when property "data" changed
     console.log('ngDoCheck.formValues');
@@ -67,9 +68,10 @@ export class DynamicFormComponent implements OnInit {
     if (this.formValues.length >= 1) {
       this.formValues.forEach(eachObj => {
 
-        if (eachObj.controltype == 'Text Box') {
+        if (eachObj.controltype === 'Text Box') {
           console.log(eachObj.inputfieldscount);
-          let inputc = parseInt(eachObj.inputfieldscount);
+          // tslint:disable-next-line:radix
+          const inputc = parseInt(eachObj.inputfieldscount);
           console.log(inputc);
           this.inputValues[inputc - 1] = {
             label: eachObj.label,
@@ -79,7 +81,8 @@ export class DynamicFormComponent implements OnInit {
 
         if (eachObj.controltype == 'Textarea') {
           console.log(eachObj.textareaFieldCounts);
-          let textareac = parseInt(eachObj.textareaFieldCounts);
+          // tslint:disable-next-line:radix
+          const textareac = parseInt(eachObj.textareaFieldCounts);
           console.log(textareac);
           this.textareaValues[textareac - 1] = {
             label: eachObj.label,
@@ -87,9 +90,10 @@ export class DynamicFormComponent implements OnInit {
           };
         }
 
-        if (eachObj.controltype == 'Radio button') {
+        if (eachObj.controltype === 'Radio button') {
           console.log(eachObj.radioFieldCounts);
-          let radioc = parseInt(eachObj.radioFieldCounts);
+          // tslint:disable-next-line:radix
+          const radioc = parseInt(eachObj.radioFieldCounts);
           console.log(radioc);
           this.radiovalues[radioc - 1] = {
             label: eachObj.label,
@@ -97,9 +101,10 @@ export class DynamicFormComponent implements OnInit {
           };
         }
 
-        if (eachObj.controltype == 'Dropdown') {
+        if (eachObj.controltype === 'Dropdown') {
           console.log(eachObj.dropdownFieldCounts);
-          let dropdownc = parseInt(eachObj.dropdownFieldCounts);
+          // tslint:disable-next-line:radix
+          const dropdownc = parseInt(eachObj.dropdownFieldCounts);
           console.log(dropdownc);
           this.dropdownvalues[dropdownc - 1] = {
             label: eachObj.label,
@@ -108,7 +113,7 @@ export class DynamicFormComponent implements OnInit {
         }
 
 
-        if (eachObj.controltype == 'Checkboxes') {
+        if (eachObj.controltype === 'Checkboxes') {
           this.checkboxvalues[eachObj.checkFieldCounts - 1] = {
             values: [],
             checks: [],
@@ -126,9 +131,10 @@ export class DynamicFormComponent implements OnInit {
           // this.onChange();
         }
 
-        if (eachObj.controltype == 'Date') {
+        if (eachObj.controltype === 'Date') {
           console.log(eachObj.datefields);
-          let datec = parseInt(eachObj.datefields);
+          // tslint:disable-next-line:radix
+          const datec = parseInt(eachObj.datefields);
           console.log(datec);
           this.datefields[datec - 1] = {
             date: [],
@@ -139,7 +145,7 @@ export class DynamicFormComponent implements OnInit {
 
       });
     } else {
-      console.log("Else Part");
+      console.log('Else Part');
     }
 
 
@@ -184,10 +190,11 @@ export class DynamicFormComponent implements OnInit {
     console.log(this.formValues);
     this.saveForm.form = this.formValues;
     this._dynamicFormService.AddDynamicForm(this.saveForm)
+    // tslint:disable-next-line:no-shadowed-variable
     .subscribe((value) => {
-     
+
       console.log(value);
-     
+
     });
 
 
@@ -230,9 +237,10 @@ export class DynamicFormComponent implements OnInit {
       console.log(obj);
 
       obj.checks.forEach((checkvalue, chechindex) => {
-        if (checkvalue == true) {
+        if (checkvalue === true) {
+          // tslint:disable-next-line:no-shadowed-variable
           obj.values.forEach((value, valueindex) => {
-            if (chechindex == valueindex) {
+            if (chechindex === valueindex) {
               this.checktrue.push(value);
               console.log(value);
               console.log('this.checktrue');

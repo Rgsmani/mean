@@ -15,21 +15,21 @@ export class DepartmentComponent implements OnInit {
   addeddepartments: Array<Department>;
   updateddepartments: Array<Department>;
   deleteddepartments: Array<Department>;
-  department:Array<any>;
+  department: Array<any>;
 
-private showEdit: boolean = false;
+private showEdit = false;
 
 selected_details: any = [];
 
    init_details = {
-     _id: "",
-     department: ""
+     _id: '',
+     department: ''
    };
 
 
   constructor(private _departmentService: DepartmentService) { }
 
-  ngOnInit() {  
+  ngOnInit() {
 
    this.getDepartments();
 
@@ -40,15 +40,15 @@ selected_details: any = [];
 
 
 
-  showAdd(){
+  showAdd() {
       this.showEdit = false;
   }
 
-  getDepartments(){
+  getDepartments() {
   this._departmentService.getDepartments()
       .subscribe((value) => {
         this.departments = value;
-        console.log("getRoles");
+        console.log('getRoles');
         console.log(this.departments);
       });
 
@@ -59,36 +59,36 @@ selected_details: any = [];
     this._departmentService.addDepartment(value)
       .subscribe((resvalue) => {
         this.departments = resvalue;
-        console.log("in Comp");
+        console.log('in Comp');
         console.log(this.departments);
-         this.department = null; 
-         this.getDepartments();         
-      });   
-     
+         this.department = null;
+         this.getDepartments();
+      });
+
   }
 
-  updateDetails(value: Department){
+  updateDetails(value: Department) {
     this.selected_details = value;
-    console.log("updated details");
-    console.log(this.selected_details); 
+    console.log('updated details');
+    console.log(this.selected_details);
     this.showEdit = true;
   }
 
-  updateDepartment(){
-    console.log("selected");
+  updateDepartment() {
+    console.log('selected');
     console.log(this.selected_details);
     this._departmentService.updateDepartment(this.selected_details)
       .subscribe((resValue) => {
           this.updateddepartments = resValue;
-          console.log("Updated");
+          console.log('Updated');
           console.log(this.updateddepartments);
             this.selected_details = this.init_details;
           this.getDepartments();
            this.showEdit = false;
       });
-    
+
   }
-  deleteDepartment(value){
+  deleteDepartment(value) {
       this._departmentService.deleteDepartment(value)
       .subscribe((resValue) => {
            this.deleteddepartments = resValue;

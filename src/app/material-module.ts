@@ -20,7 +20,7 @@ import {
     MatCardModule,
     MatCheckboxModule,
     MatChipsModule,
-    MatDatepickerModule,     
+    MatDatepickerModule,
     MatNativeDateModule,
     MatDialogModule,
     MatExpansionModule,

@@ -11,8 +11,8 @@ export class FormListComponent implements OnInit {
 
 
   // datatable data
-    first: number = 0;
-    tablerows = [5,10,25,50,100];
+    first = 0;
+    tablerows = [5, 10, 25, 50, 100];
     tableshow = 10;
   // datatable data
 
@@ -24,16 +24,16 @@ export class FormListComponent implements OnInit {
     this.getDynamicForm();
   }
 
-  getDynamicForm(){
+  getDynamicForm() {
     this._dynamicFormService.getDynamicForm()
         .subscribe((value) => {
           this.dynamicforms = value;
-          console.log("dynamicforms");
+          console.log('dynamicforms');
           console.log(this.dynamicforms);
-        });  
+        });
     }
 
-    deleteForm(form){
+    deleteForm(form) {
       this._dynamicFormService.deleteDynamicForm(form)
       .subscribe((value) => {
            this.deletedform = value;

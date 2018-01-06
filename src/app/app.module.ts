@@ -9,7 +9,7 @@ import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 // import { MaterialModule,
 //           MdSidenavModule,
 //           MdDatepickerModule,
-//           DateAdapter,          
+//           DateAdapter,
 //           MdNativeDateModule
 // } from '@angular/material';
 
@@ -20,8 +20,8 @@ import { ExampleMaterialModule } from './material-module';
 
 import {ToastModule} from 'ng2-toastr/ng2-toastr';
 // import {MatMenuModule} from '@angular/material';
-import { FlexLayoutModule } from "@angular/flex-layout";
-import { RouterModule }   from '@angular/router';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RouterModule } from '@angular/router';
 
 import 'hammerjs';
 import { NgxDatatableModule } from '@swimlane/ngx-datatable';
@@ -49,7 +49,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent,   
+    HomeComponent,
     DashboardComponent,
     UsersComponent,
     UserComponent,
@@ -63,22 +63,22 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,   
-    FlexLayoutModule,   
+    HttpModule,
+    FlexLayoutModule,
     BrowserAnimationsModule,
     routing,
     ExampleMaterialModule,
     NoopAnimationsModule,
-    DataTableModule, 
+    DataTableModule,
     SharedModule,
 //      MaterialModule,
 //     MdSidenavModule,
-//     MdDatepickerModule,    
-// MdNativeDateModule,   
+//     MdDatepickerModule,
+// MdNativeDateModule,
     DataTablesModule,
     NgxDatatableModule,
     ToastModule.forRoot(),
-    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)   
+    PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
   ],
   providers: [appRoutingProviders],
   bootstrap: [AppComponent]

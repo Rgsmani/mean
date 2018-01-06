@@ -11,9 +11,9 @@ module.exports = {
             if (err) {
                 res.send(err);
             }
-            res.json(users);
-        });
-    },
+                  res.json(users);
+          });
+     },
 
     saveUser: function (req, res) {
         var save_data = req.body;
@@ -74,6 +74,7 @@ module.exports = {
                 update_data.password = hash;
                 console.log("hash");
                 console.log(update_data.password);
+                
             });
 
         if (!update_data) {

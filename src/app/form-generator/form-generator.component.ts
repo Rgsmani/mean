@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewContainerRef } from '@angular/core';
 import { ToastsManager } from 'ng2-toastr/ng2-toastr';
-import { DynamicFormComponent }     from '../dynamic-form/dynamic-form.component';
+import { DynamicFormComponent } from '../dynamic-form/dynamic-form.component';
 @Component({
   selector: 'app-form-generator',
   templateUrl: './form-generator.component.html',
@@ -38,7 +38,7 @@ export class FormGeneratorComponent implements OnInit {
   checkboxOptions = [''];
   dropdownOptions = [''];
   formValues: any = [];
-  newformValues: any =[];
+  newformValues: any = [];
 
 
     inputFieldCounts = [];
@@ -47,7 +47,7 @@ export class FormGeneratorComponent implements OnInit {
     checkFieldCounts = [];
     dropdownFieldCounts = [];
     dateFieldCounts = [];
-  
+
   constructor(public toastr: ToastsManager, vcr: ViewContainerRef) {
     this.toastr.setRootViewContainerRef(vcr);
   }
@@ -109,10 +109,10 @@ export class FormGeneratorComponent implements OnInit {
       const y = x[0].concat(x[1]);
       const z = y.concat(x[1]);
       this.textboxValues.key = z;
-    }else if (x[2]){
+    }else if (x[2]) {
       const y = x[0].concat(x[1]);
       this.textboxValues.key = y;
-    }else{
+    }else {
       this.textboxValues.key = x[0];
     }
 
@@ -145,10 +145,10 @@ export class FormGeneratorComponent implements OnInit {
       const y = x[0].concat(x[1]);
       const z = y.concat(x[1]);
       this.textareaValues.key = z;
-    }else if (x[2]){
+    }else if (x[2]) {
       const y = x[0].concat(x[1]);
       this.textareaValues.key = y;
-    }else{
+    }else {
       this.textareaValues.key = x[0];
     }
     this.textareaValues.controltype = this.selectedCtype;
@@ -179,14 +179,14 @@ export class FormGeneratorComponent implements OnInit {
 
      const x = label.split(' ');
 
-     if (x[2]){
+     if (x[2]) {
        const y = x[0].concat(x[1]);
        const z = y.concat(x[1]);
        this.radioValues.key = z;
-     }else if (x[2]){
+     }else if (x[2]) {
        const y = x[0].concat(x[1]);
        this.radioValues.key = y;
-     }else{
+     }else {
        this.radioValues.key = x[0];
      }
 
@@ -221,14 +221,14 @@ export class FormGeneratorComponent implements OnInit {
      const x = label.split(' ');
 
      // tslint:disable-next-line:one-line
-     if (x[2]){
+     if (x[2]) {
        const y = x[0].concat(x[1]);
        const z = y.concat(x[1]);
        this.checkboxValues.key = z;
-     }else if (x[2]){
+     }else if (x[2]) {
        const y = x[0].concat(x[1]);
        this.checkboxValues.key = y;
-     }else{
+     }else {
        this.checkboxValues.key = x[0];
      }
 
@@ -264,14 +264,14 @@ export class FormGeneratorComponent implements OnInit {
 
      const x = label.split(' ');
 
-     if (x[2]){
+     if (x[2]) {
        const y = x[0].concat(x[1]);
        const z = y.concat(x[1]);
        this.dropdownValues.key = z;
-     }else if (x[2]){
+     }else if (x[2]) {
        const y = x[0].concat(x[1]);
        this.dropdownValues.key = y;
-     }else{
+     }else {
        this.dropdownValues.key = x[0];
      }
      this.dropdownValues.dropdownFieldCounts = this.dropdownFieldCounts.length;
@@ -301,14 +301,14 @@ export class FormGeneratorComponent implements OnInit {
 
      const x = label.split(' ');
 
-     if (x[2]){
+     if (x[2]) {
        const y = x[0].concat(x[1]);
        const z = y.concat(x[1]);
        this.dateValues.key = z;
-     }else if (x[2]){
+     }else if (x[2]) {
        const y = x[0].concat(x[1]);
        this.dateValues.key = y;
-     }else{
+     }else {
        this.dateValues.key = x[0];
      }
      this.dateValues.datefields = this.dateFieldCounts.length;
@@ -328,14 +328,14 @@ export class FormGeneratorComponent implements OnInit {
 
   }
 
-  deleteFormInput(value){
+  deleteFormInput(value) {
     console.log('value in parent');
     console.log(value);
 
     this.formValues.forEach((element, index) => {
       console.log('parent element');
       console.log(element);
-      if(value.label === element.label){
+      if (value.label === element.label) {
        this.formValues.splice(index, 1);
        console.log('this.formValues');
        console.log(this.formValues);

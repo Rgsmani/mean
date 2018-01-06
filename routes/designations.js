@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-
+var session = require('express-session');
 var mongojs = require('mongojs');
 var db = mongojs("mongodb://manikandan:password@ds047085.mlab.com:47085/crm");
 
@@ -10,7 +10,9 @@ module.exports = {
             if (err) {
                 res.send(err);
             }
-            res.json(des);
+            console.log('req.session', req.session);
+            res.json(des);  
+           
         });
     },
 

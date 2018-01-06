@@ -1,22 +1,41 @@
 import { Component } from '@angular/core';
-import {AuthenticateService} from "../services/authenticate.service";
-import {UserComponent} from "../user/user.component";
+import { Router } from '@angular/router';
+import { AuthenticateService } from '../services/authenticate.service';
+import { UserComponent } from '../user/user.component';
+
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers : [AuthenticateService]
+  providers: [AuthenticateService]
 })
 export class LoginComponent {
-  public user = new UserComponent('','');
+  public user = new UserComponent('', '');
   public errorMsg = '';
 
-  constructor(private _service:AuthenticateService) { }
+  constructor(private _router: Router, private _service: AuthenticateService) { }
 
   login() {
-    if(!this._service.login(this.user)) {
-      this.errorMsg = 'Failed to login! try again ...';
+
+    if ((this.user.username === '') || (this.user.password === '')) {
+      this.errorMsg = 'Please Enter Username and Password'
+    } else {
+      this._service.login(this.user)
+        .subscribe((resvalue) => {
+          console.log('resvalue', resvalue);
+          // tslint:disable-next-line:one-line
+          if (resvalue._id){
+            this._router.navigate(['/home']);
+          } else if (resvalue.message === 'Password is Wrong!') {
+            this.errorMsg = 'Password is Wrong!';
+          } else if (resvalue.message === 'No User Found!') {
+            this.errorMsg = 'No User Found!';
+          // tslint:disable-next-line:no-trailing-whitespace
+          } 
+        });
     }
+
+
   }
 }
