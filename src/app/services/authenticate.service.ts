@@ -18,7 +18,7 @@ export class AuthenticateService {
   constructor(private _router: Router, private _http: Http) { }
 
   logout() {
-    // localStorage.removeItem("user");
+    localStorage.removeItem('currentUser');
     this._router.navigate(['/login']);
   }
 
@@ -35,7 +35,7 @@ export class AuthenticateService {
   }
 
   checkCredentials() {
-    if (localStorage.getItem('user') === null) {
+    if (localStorage.getItem('currentUser') === null) {
       this._router.navigate(['/login']);
     }
   }

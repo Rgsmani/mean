@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var session = require('express-session')
 
 var mongojs = require('mongojs');
 var db = mongojs("mongodb://manikandan:password@ds047085.mlab.com:47085/crm");
@@ -13,8 +14,8 @@ var departments = require('./departments');
 var dynamicform = require('./dynamicform');
 var auth = require('./authentication');
 
-var sessionChecker = (req, res, next) => {
-    console.log('sessionChecker');
+function sessionChecker(req, res, next) {
+    console.log('session Checker');
     if (req.session.user) {
         res.json(req.session.user);
     } else {

@@ -19,6 +19,8 @@ module.exports = {
         var save_data = req.body;
         console.log("in backend");
         console.log(save_data);
+
+
          bcrypt.hash(save_data.password, 10, function (err, hash){
                 if (err) {
                res.send(err);
@@ -26,26 +28,25 @@ module.exports = {
                 save_data.password = hash;
                 console.log("hash");
                 console.log(save_data.password);
-            });
-
-             console.log(save_data);
-        if (!save_data.empid) {
-            res.status(400);
-            res.json({
-                "error": "Bad Data"
-            });
-        } else {
-
-           
-
-            db.users.save(save_data, function (err, users) {
-                if (err) {
-                    res.send(err);
+                console.log(save_data);
+                if (!save_data.empid) {
+                    res.status(400);
+                    res.json({
+                        "error": "Bad Data"
+                    });
+                } else {                
+        
+                    db.users.save(save_data, function (err, users) {
+                        if (err) {
+                            res.send(err);
+                        }
+                        res.json(users);
+                        // console.log("saved = " + dep);
+                    });
                 }
-                res.json(users);
-                // console.log("saved = " + dep);
             });
-        }
+
+         
     },
 
     updateUser: function (req, res) {
@@ -74,22 +75,22 @@ module.exports = {
                 update_data.password = hash;
                 console.log("hash");
                 console.log(update_data.password);
-                
+                if (!update_data) {
+                    res.status(400);
+                    res.json({
+                        "error": "bad data"
+                    });
+                } else {
+                    db.users.update({ _id: mongojs.ObjectId(req.params.id) }, update_data, {}, function (err, user) {
+                        if (err) {
+                            res.json(err);
+                        }
+                        res.json(user);               
+                    });
+                }
             });
 
-        if (!update_data) {
-            res.status(400);
-            res.json({
-                "error": "bad data"
-            });
-        } else {
-            db.users.update({ _id: mongojs.ObjectId(req.params.id) }, update_data, {}, function (err, user) {
-                if (err) {
-                    res.json(err);
-                }
-                res.json(user);               
-            });
-        }
+      
 
     },
 

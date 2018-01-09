@@ -16,6 +16,11 @@ export class LoginComponent {
 
   constructor(private _router: Router, private _service: AuthenticateService) { }
 
+  // tslint:disable-next-line:use-life-cycle-interface
+  ngOnInit() {
+    this._service.checkCredentials();
+  }
+
   login() {
 
     if ((this.user.username === '') || (this.user.password === '')) {
@@ -26,6 +31,7 @@ export class LoginComponent {
           console.log('resvalue', resvalue);
           // tslint:disable-next-line:one-line
           if (resvalue._id){
+            localStorage.setItem('currentUser', resvalue);
             this._router.navigate(['/home']);
           } else if (resvalue.message === 'Password is Wrong!') {
             this.errorMsg = 'Password is Wrong!';
@@ -38,4 +44,6 @@ export class LoginComponent {
 
 
   }
+
+
 }

@@ -9,7 +9,7 @@ export class UserComponent implements OnInit {
   constructor(public username: string, public password: string) { }
 
   ngOnInit() {
-    
+
   }
 
 }

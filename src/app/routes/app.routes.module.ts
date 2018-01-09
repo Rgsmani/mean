@@ -15,7 +15,9 @@ import { FormListComponent } from '../form-list/form-list.component';
 
 
 export const routes: Routes = [
-   { path: 'login', component:LoginComponent },
+   { path: 'login', component: LoginComponent },
+   { path: '', component: LoginComponent },
+   { path: '**', component: LoginComponent },
    { path: 'home', component: HomeComponent,
       children: [
         { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
@@ -28,10 +30,9 @@ export const routes: Routes = [
           { path: 'form-generator', component: FormGeneratorComponent },
           { path: 'form-list', component: FormListComponent }
       ]
-      
- },
-      { path: '', component: LoginComponent },
-      { path: '**', component: LoginComponent }
+
+ }
+
 
   // { path: '', redirectTo: 'component-one', pathMatch: 'full' },
   // { path: 'component-one', component: ComponentOne },
