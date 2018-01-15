@@ -5,9 +5,12 @@ var logger = require('morgan');
 var session = require('express-session')
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
 var cors = require('cors')
 var routes = require('./routes/routes');
 var bcrypt = require('bcrypt');
+var flash = require('connect-flash');
 
 // var index = require('./routes/index');
 // var users = require('./routes/users');
@@ -19,14 +22,27 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(session({
-  key: 'user_sid',
   secret: 'somerandonstuffs',
   resave: false,
-  saveUninitialized: false,
-  cookie: {
-      expires: 600000
-  }
+  saveUninitialized: true,  
 }));
+
+
+// Passport init
+app.use(passport.initialize());
+app.use(passport.session());
+
+// Connect Flash
+app.use(flash());
+
+// Global Vars
+app.use(function (req, res, next) {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  res.locals.error = req.flash('error');
+  res.locals.user = req.user || null;
+  next();
+});
 
 // uncomment after placing your favicon in /public
 //app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));

@@ -40,6 +40,8 @@ import { DepartmentComponent } from './department/department.component';
 import { FormGeneratorComponent } from './form-generator/form-generator.component';
 import { DynamicFormComponent } from './dynamic-form/dynamic-form.component';
 import { FormListComponent } from './form-list/form-list.component';
+import { AuthService } from './auth/auth.service';
+import { AuthGuard } from './auth/auth.guard';
 
 const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
@@ -80,7 +82,7 @@ const PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
     ToastModule.forRoot(),
     PerfectScrollbarModule.forRoot(PERFECT_SCROLLBAR_CONFIG)
   ],
-  providers: [appRoutingProviders],
+  providers: [appRoutingProviders, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

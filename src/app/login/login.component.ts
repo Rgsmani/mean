@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticateService } from '../services/authenticate.service';
+import { AuthService } from '../auth/auth.service';
 import { UserComponent } from '../user/user.component';
 
 
@@ -8,17 +8,19 @@ import { UserComponent } from '../user/user.component';
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthenticateService]
+  providers: [AuthService]
 })
 export class LoginComponent {
   public user = new UserComponent('', '');
   public errorMsg = '';
 
-  constructor(private _router: Router, private _service: AuthenticateService) { }
+  constructor(private _router: Router, private _service: AuthService) { }
 
   // tslint:disable-next-line:use-life-cycle-interface
   ngOnInit() {
-    this._service.checkCredentials();
+   if (this._service.authenticated) {
+    this._router.navigate(['/home']);
+   }
   }
 
   login() {
@@ -31,7 +33,6 @@ export class LoginComponent {
           console.log('resvalue', resvalue);
           // tslint:disable-next-line:one-line
           if (resvalue._id){
-            localStorage.setItem('currentUser', resvalue);
             this._router.navigate(['/home']);
           } else if (resvalue.message === 'Password is Wrong!') {
             this.errorMsg = 'Password is Wrong!';

@@ -1,18 +1,19 @@
 import { Component, OnInit } from '@angular/core';
-import {AuthenticateService} from '../services/authenticate.service';
+import { AuthService } from '../auth/auth.service';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  providers: [AuthenticateService],
+  providers: [AuthService],
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private _service: AuthenticateService) { }
+  constructor(private _service: AuthService, private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    // this._service.checkCredentials();
+
   }
 
 

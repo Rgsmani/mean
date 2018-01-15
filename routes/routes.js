@@ -1,7 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var session = require('express-session')
-
+var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
 var mongojs = require('mongojs');
 var db = mongojs("mongodb://manikandan:password@ds047085.mlab.com:47085/crm");
 
@@ -14,19 +14,12 @@ var departments = require('./departments');
 var dynamicform = require('./dynamicform');
 var auth = require('./authentication');
 
-function sessionChecker(req, res, next) {
-    console.log('session Checker');
-    if (req.session.user) {
-        res.json(req.session.user);
-    } else {
-        next();
-    }    
-  };
+
 
 router.route('/').get(index.index);
 
 // Designation
-router.route('/designations', sessionChecker).get(designations.getDesignations);
+router.route('/designations').get(designations.getDesignations);
 router.route('/savedesignation').post(designations.saveDesignation);
 router.route('/updatedesignation/:id').put(designations.updateDesignation);
 router.route('/deletedesignation/:id').delete(designations.deleteDesignation);
@@ -56,7 +49,7 @@ router.route('/updatedynamicforms/:id').put(dynamicform.updateDynamicForm);
 router.route('/deletedynamicforms/:id').delete(dynamicform.deleteDynamicForm);
 
 // Auth
-router.route('/checkuser').post(auth.loginUser);
+router.route('/checkuser', passport.authenticate('local'), ).post(auth.loginUser);
 
 
 

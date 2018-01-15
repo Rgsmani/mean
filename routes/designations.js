@@ -6,6 +6,8 @@ var db = mongojs("mongodb://manikandan:password@ds047085.mlab.com:47085/crm");
 
 module.exports = {
     getDesignations: function (req, res) {
+        console.log('designation req.session');
+        console.log(req.session);
         db.designations.find(function (err, des) {
             if (err) {
                 res.send(err);

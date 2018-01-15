@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var session = require('express-session');
 var bcrypt = require('bcrypt');
+var passport = require('passport'), LocalStrategy = require('passport-local').Strategy;
+
 var mongojs = require('mongojs'); 
 var db = mongojs("mongodb://manikandan:password@ds047085.mlab.com:47085/crm");
 
@@ -16,11 +18,12 @@ module.exports = {
     console.log('checkUser');
     console.log(loguser);
     //  res.send("Welcome to this page for the first time!" + loguser.username);
-
+    var sess = req.session;
     var query = {
       username: loguser.username
     };
 
+    passport.use(new LocalStrategy(
     db.users.find(query).toArray(function (err, user) {
       if (err) {
         console.log('err', err)
@@ -40,10 +43,10 @@ module.exports = {
           console.log("hash checking");
           console.log(resp);
           if (resp) {
-            req.session.user = user[0];
+            sess.user = user[0];
             console.log("session user");
-            console.log(req.session.user);
-            res.json(req.session.user);
+            console.log(sess.user);
+            res.json(sess.user);
           } else {
             var wrong_pwd = {
               message: "Password is Wrong!"
@@ -67,7 +70,7 @@ module.exports = {
       // else{
       //     res.send("password is wrong");
       // }
-    });
+    })));
   }
 
 
